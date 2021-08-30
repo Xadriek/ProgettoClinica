@@ -1,6 +1,5 @@
 package it.uniroma3.siw.spring.controller.validator;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,25 +8,26 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import it.uniroma3.siw.spring.model.Prodotto;
-import it.uniroma3.siw.spring.service.ProdottoService;
-
+import it.uniroma3.siw.spring.model.Doctor;
+import it.uniroma3.siw.spring.service.DoctorService;
 
 @Component
-public class ProdottoValidator implements Validator {
-	@Autowired
-	private ProdottoService prodottoService;
+public class DoctorValidator implements Validator {
 	
-    private static final Logger logger = LoggerFactory.getLogger(ProdottoValidator.class);
+	@Autowired
+	private DoctorService doctorService;
+	
+    private static final Logger logger = LoggerFactory.getLogger(DoctorValidator.class);
 
 	@Override
 	public void validate(Object o, Errors errors) {
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nome", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "descrizione", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "surname", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "specialization", "required");
 
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
-			if (this.prodottoService.alreadyExists((Prodotto)o)) {
+			if (this.doctorService.alreadyExists((Doctor)o)) {
 				logger.debug("e' un duplicato");
 				errors.reject("duplicato");
 			}
@@ -36,6 +36,6 @@ public class ProdottoValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> aClass) {
-		return Prodotto.class.equals(aClass);
+		return Doctor.class.equals(aClass);
 	}
 }
