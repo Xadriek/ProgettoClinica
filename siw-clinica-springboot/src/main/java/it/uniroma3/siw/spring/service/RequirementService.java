@@ -12,20 +12,22 @@ import it.uniroma3.siw.spring.repository.RequirementRepository;
 
 @Service
 public class RequirementService {
-	
+
 	@Autowired
 	private RequirementRepository requirementRepository;
-	
+	@Autowired
+	private CredentialsService credentialsService;
+
 	@Transactional
 	public Requirement insert(Requirement requirement) {
 		return requirementRepository.save(requirement);
 	}
-	
+
 	@Transactional
 	public List<Requirement> allRequirement() {
 		return (List<Requirement>) requirementRepository.findAll();
 	}
-	
+
 	@Transactional
 	public boolean alreadyExists(Requirement requirement) {
 		List<Requirement> requirements = this.requirementRepository.findByName(requirement.getName());
@@ -33,5 +35,9 @@ public class RequirementService {
 			return true;
 		else 
 			return false;
+	}
+	@Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
 	}
 }

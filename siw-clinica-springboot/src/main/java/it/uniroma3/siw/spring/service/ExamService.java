@@ -26,6 +26,8 @@ public class ExamService {
 		private DoctorService doctorService; 
 		@Autowired
 		private TypeOfExaminationService typeOfExaminationService; 
+		@Autowired
+		private CredentialsService credentialsService;
 		
 		@Transactional
 		public Exam insert(Exam exam) {
@@ -79,5 +81,9 @@ public class ExamService {
 		}
 		public TypeOfExaminationService getTypeOfExaminationService() {
 			return this.typeOfExaminationService;
+		}
+		@Transactional
+		public CredentialsService getCredentialsService() {
+			return credentialsService;
 		}
 }

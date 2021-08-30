@@ -37,12 +37,16 @@ public class ExamController {
     @RequestMapping(value = "/exam/{id}", method = RequestMethod.GET)
     public String getExam(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("exam", this.examService.examById(id));
+    	model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
+
     	return "exam";
     }
 
     @RequestMapping(value = "/admin/modExam/{id}", method = RequestMethod.GET)
     public String modExam(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("exam", this.examService.examById(id));
+    	model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
+
     	return "examFormMod";
     }
     @RequestMapping(value ="/admin/examUpdate")
@@ -60,7 +64,7 @@ public class ExamController {
     		return "exams";
     }*/
     @RequestMapping(value = "/exam", method = RequestMethod.GET)
-    public String getExamsByPatience(@ModelAttribute("patient") User patient,Model model) {
+    public String getExamsByPatient(@ModelAttribute("patient") User patient,Model model) {
     		model.addAttribute("exams", this.examService.examByPatient(patient));
     		return "exams";
     }
