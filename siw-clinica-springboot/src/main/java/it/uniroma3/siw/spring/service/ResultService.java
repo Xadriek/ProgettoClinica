@@ -13,6 +13,8 @@ public class ResultService {
 	
 	@Autowired
 	private ResultRepository resultRepository;
+	@Autowired
+	private CredentialsService credentialsService;
 	
 	@Transactional
 	public Result insert(Result result) {
@@ -31,5 +33,9 @@ public class ResultService {
 			return true;
 		else 
 			return false;
+	}
+	@Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
 	}
 }

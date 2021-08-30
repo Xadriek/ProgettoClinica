@@ -16,6 +16,8 @@ public class DoctorService {
 	
 	@Autowired
 	private DoctorRepository doctorRepository; 
+	@Autowired
+	private CredentialsService credentialsService;
 	
 	@Transactional
 	public Doctor insert(Doctor doctor) {
@@ -43,5 +45,9 @@ public class DoctorService {
 			return true;
 		else 
 			return false;
+	}
+	@Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
 	}
 }

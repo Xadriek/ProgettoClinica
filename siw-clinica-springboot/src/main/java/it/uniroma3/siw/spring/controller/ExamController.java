@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.ExamValidator;
 import it.uniroma3.siw.spring.model.Exam;
+import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.ExamService;
 
 @Controller
@@ -36,17 +37,40 @@ public class ExamController {
     @RequestMapping(value = "/exam/{id}", method = RequestMethod.GET)
     public String getExam(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("exam", this.examService.examById(id));
+    	model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
+
     	return "exam";
     }
 
-    @RequestMapping(value = "/exam", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/modExam/{id}", method = RequestMethod.GET)
+    public String modExam(@PathVariable("id") Long id, Model model) {
+    	model.addAttribute("exam", this.examService.examById(id));
+    	model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
+
+    	return "examFormMod";
+    }
+    @RequestMapping(value ="/admin/examUpdate")
+    public String updateExam(@ModelAttribute("exam") Exam exam,
+    		Model model, BindingResult bindingResult){
+    	this.examService.insert(exam);
+    	
+    	return "exams";
+    	
+
+}
+  /*  @RequestMapping(value = "/exam", method = RequestMethod.GET)
     public String getExams(Model model) {
     		model.addAttribute("exams", this.examService.allExams());
+    		return "exams";
+    }*/
+    @RequestMapping(value = "/exam", method = RequestMethod.GET)
+    public String getExamsByPatient(@ModelAttribute("patient") User patient,Model model) {
+    		model.addAttribute("exams", this.examService.examByPatient(patient));
     		return "exams";
     }
     
     @RequestMapping(value = "/admin/exam", method = RequestMethod.POST)
-    public String addExam(@ModelAttribute("exam") Exam exam, 
+    public String newExam(@ModelAttribute("exam") Exam exam, 
     									Model model, BindingResult bindingResult) {
     	this.examValidator.validate(exam, bindingResult);
         if (!bindingResult.hasErrors()) {

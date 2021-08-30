@@ -33,12 +33,15 @@ public class DoctorController {
     @RequestMapping(value = "/doctor/{id}", method = RequestMethod.GET)
     public String getDoctor(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("doctor", this.doctorService.doctorById(id));
+    	model.addAttribute("role", this.doctorService.getCredentialsService().getRoleAuthenticated());
+
     	return "doctor";
     }
 
     @RequestMapping(value = "/doctor", method = RequestMethod.GET)
     public String getDoctors(Model model) {
     		model.addAttribute("doctors", this.doctorService.allDoctors());
+        	model.addAttribute("role", this.doctorService.getCredentialsService().getRoleAuthenticated());
     		return "doctors";
     }
     
