@@ -42,7 +42,7 @@ public class TypeOfExaminationController {
     }
     
     @RequestMapping(value = "/admin/typeOfExaminationination", method = RequestMethod.POST)
-    public String addTypeOfExamination(@ModelAttribute("typeOfExaminationination") TypeOfExamination typeOfExaminationination, 
+    public String newTypeOfExamination(@ModelAttribute("typeOfExaminationination") TypeOfExamination typeOfExaminationination, 
     									Model model, BindingResult bindingResult) {
     	this.typeOfExaminationinationValidator.validate(typeOfExaminationination, bindingResult);
         if (!bindingResult.hasErrors()) {
