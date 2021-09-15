@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title='Registra Utente')"> </head>
-<body>
+<head th:replace="fragments/base.html :: headerfiles(title='Registrazione Utente')"> 
+	<link th:href="@{/layout/styles/layout.css}" rel="stylesheet">
+</head>
+
+<body  id="top">
 	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-    	<h4 th:text="#{header.registra}">Registrazione</h4>
-	<form th:action="@{/register}" method="POST">
-    <table>
-        <tr>
-            <td>Username</td>
-            <td><input type="text" placeholder="username" required
-                       th:field="${credentials.username}"/></td>
-            <td th:if="${#fields.hasErrors('credentials.username')}"
-                th:errors="${credentials.username}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" placeholder="password" required
-                       th:field="${credentials.password}"/></td>
-            <td th:if="${#fields.hasErrors('credentials.password')}"
-                th:errors="${credentials.password}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>Nome</td>
-            <td><input type="text" placeholder="nome" required
-                       th:field="${user.nome}"/></td>
-            <td th:if="${#fields.hasErrors('user.nome')}"
-                th:errors="${user.nome}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>Cognome</td>
-            <td><input type="text" placeholder="cognome" required
-                       th:field="${user.cognome}"/></td>
-            <td th:if="${#fields.hasErrors('user.cognome')}"
-                th:errors="${user.cognome}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit">Registra</button>
-            </td>
-        </tr>
-    </table>
-	</form>
-	</div>
+
+	<div class="wrapper row3">
+ 		<main class="hoc container clear"> 
+    	<!-- main body -->
+    	<!-- ############################################################################################# -->
+    	<section class="group">
+      		<div class="one_half first"><img class="inspace-15 borderedbox" src="images/pic0.png" alt=""></div>
+      		<div class="one_half">
+			<div class="containerLogin">
+				<div>
+					<h6 class="heading" th:text="#{header.registra}">Registrazione</h6>
+				</div>
+				<form th:action="@{/register}" method="POST">
+				<div>
+					<div>
+					<h6 class="heading"><span>Username:</span></h6>
+            		<h6 class="heading"><span><input type="text" placeholder="username" required th:field="${credentials.username}"/></span></h6>
+                    <h6 class="heading" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></h6>
+					<p class="nospace"></p>
+					</div>
+					<div>
+            		<h6 class="heading"><span>Password</span></h6>
+            		<h6 class="heading" ><span><input type="password" placeholder="password" required th:field="${credentials.password}"/></span></h6>
+            		<h6 class="heading" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></h6>
+            		<p class="nospace"></p>
+        			</div>
+        			<div>
+            		<h6 class="heading"><span>Nome</span></h6>
+            		<h6 class="heading"><span><input type="text" placeholder="nome" required th:field="${user.nome}"/></span></h6>
+            		<h6 class="heading" th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}" th:style="'color:red'"></h6>
+            		<p class="nospace"></p>
+					</div>
+					<div>
+            		<h6 class="heading"><span>Cognome</span></h6>
+            		<h6 class="heading"><span><input type="text" placeholder="cognome" required th:field="${user.cognome}"/></span></h6>
+            		<h6 class="heading" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}" th:style="'color:red'"></h6>
+            		<p class="nospace"></p>
+      				</div>
+        			<div>
+					<h6 class="heading"><span><button type="submit">Registra</button></span></h6>
+            		</div>
+            		
+		</form>
+		</div>
+		<div class="clear"></div>
+		</div>
+		</section>
+  		</main>
+		</div>
+		
+		
     <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
 </body>
 </html>
