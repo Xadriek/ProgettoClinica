@@ -47,7 +47,7 @@
     
       <div id="logo" class="fl_left"> 
         
-        <h1><a href=#>Portale Museale</a></h1>
+        <h1><a href=#>Portale Clinica</a></h1>
        
       </div>
       <nav id="mainav" class="fl_right"> 
@@ -58,20 +58,15 @@
             <ul>
               <li><a class="drop" href="#">Esami</a>
                 <ul>
-                  <li><a th:href="@{/exams}">Elenco Esami</a></li>
-                  <li><a th:href="@{/admin/examForm}">Inserisci Esami</a></li>
+                  <li><a th:href="@{/exam}">Elenco Esami</a></li>
+                  <li><a th:href="@{/admin/exam}">Inserisci Esami</a></li>
                 </ul>
               </li>
-              <li><a class="drop" href="#">Pazienti</a>
-                <ul>
-                  <li><a th:href="@{/}">Elenco Pazienti</a></li>
-                  <li><a th:href="@{}">Inserisci dati Paziente</a></li>
-                </ul>
-              </li>
+              
               <li><a class="drop" href="#">Medici</a>
                 <ul>
-                  <li><a th:href="@{/doctors}">Elenco Medici</a></li>
-                  <li><a th:href="@{/admin/doctorForm}">Inserisci dati medici</a></li>
+                  <li><a th:href="@{/doctor}">Elenco Medici</a></li>
+                  <li><a th:href="@{/admin/doctor}">Inserisci dati medici</a></li>
                 </ul>
               </li>
               
