@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.service;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -37,5 +38,10 @@ public class ResultService {
 	@Transactional
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
+	}
+
+	@Transactional
+	public Optional<Result> resultById(Long id) {
+		return resultRepository.findById(id);
 	}
 }
