@@ -5,13 +5,13 @@
 </head>
 
 <body id="top">
-	<div th:if="${role}=='ADMIN'">
+	
+<div th:if="${role}=='ADMIN'">
 		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
 	</div>
 	<div th:unless="${role}=='ADMIN'">
 		<header th:replace="fragments/base.html :: intestazione"></header>
 	</div>
-	
 	
 
 	<!-- Gallery Photo ################################################################################### -->

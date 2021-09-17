@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/baseadmin.html :: headerfiles(title=#{pageTitle.esame})"> </head>
+	
+<body id="top">
+	<div th:if="${role}=='ADMIN'">
+		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
+	</div>
+	<div th:unless="${role}=='ADMIN'">
+		<header th:replace="fragments/base.html :: intestazione"></header>
+	</div>
+
+	<div class="wrapper row3">
+		<main class="hoc container clear">
+			<!-- main body -->
+			<!-- ############################################################################################# -->
+			<section class="group">
+				<div class="one_half first">
+					
+				</div>
+				<div class="one_half">
+				<ul class="nospace group inspace-15">
+					<li class="one_half first btmspace-50">
+						<article>
+							<h6 class="heading" th:text="#{header.doctorSingolo}">Medico</h6>
+							<div th:if="${doctor}" th:object="${doctor}">
+							<h5 class="heading" >Nome:</h5>
+								<h6 class="heading" th:text="*{name}">qui-va-data-name</h6>
+								<h5 class="heading" >Cognome:</h5>
+								<h6 class="nospace" th:text="*{surname}">qui-va-surname</h6>
+								<p>                                                         </p>
+								<h5 class="heading" >Specializzazione:</h5>
+								<h6 class="heading" th:text="*{ specialization}">qui-va-specialization</h6>
+								
+							</div>
+							<p class="nospace"></p>
+							<div th:unless="${doctor}">Non esiste</div>
+							<div th:if="${session.role}=='ADMIN'">
+								<footer class="center">
+								
+								<a class="btn" th:href="@{'/admin/doctor' + '/' + ${doctor.id}}">elimina</a>
+								</footer>
+							</div>
+						</article>
+          			</li>
+        	</ul>
+      </div>					
+ 	</section>
+    <!-- ############################################################################################# -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  	</main>
+	</div>
+</body>
+</html>
