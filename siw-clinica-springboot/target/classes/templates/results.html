@@ -16,17 +16,17 @@
    <figure class="hoc container clear imgroup"> 
     <!-- ################################################################################################ -->
     <figcaption class="sectiontitle">
-      <p class="heading underline font-x2" th:text="#{header.typeOfExamination}">Elenco Tipologia</p>
+      <p class="heading underline font-x2" th:text="#{header.result}">Elenco risultati</p>
     </figcaption>
     <ul class="nospace group">
     
-    <th:block th:each="typeOfExamination : ${typeOfExaminations}">
+    <th:block th:each="result : ${results}">
     
     <li class="one_third">
-	<a  href="typeOfExamination.html" th:href="@{'/typeOfExamination' + '/' + ${typeOfExamination.id}}" >
+	<a  href="result.html" th:href="@{'/result' + '/' + ${result.id}}" >
 	
 	
-	<em th:text="|${typeOfExaminations.id} |">Tipologia</em></a>
+	<em th:text="|${results.id} |">Medici</em></a>
 	</li>
     </th:block>
       </ul>

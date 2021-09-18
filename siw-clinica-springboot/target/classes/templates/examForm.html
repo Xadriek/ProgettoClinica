@@ -23,20 +23,8 @@
 		</div>
 
 	<table>
-    	<tr>
-        <td>
-        	<h6 class="heading"><span>Data di Prenotazione:<input type="text" th:field="*{dateOfPrenotation}" required /></span></h6>
-        	<h6 class="heading"><span th:if="${#fields.hasErrors('dateOfPrenotation')}" th:errors="*{dateOfPrenotation}"></span></h6>
-        </td>
-        <td>
-        	<h6 class="heading"><span>Data esame:<input type="text" th:field="*{dateExamination}" required/></span></h6>
-			<h6 class="heading"><span th:if="${#fields.hasErrors('dateExamination')}" th:errors="*{dateExamination}"></span></h6>
-        </td>
-        
-    	</tr>
-    	<tr>
     	
-    	
+    	<tr>
         <td>				
 			<h6 class="heading"><span>
 			<label>Paziente: </label> <select id="patient" th:field="*{patient}" required>
