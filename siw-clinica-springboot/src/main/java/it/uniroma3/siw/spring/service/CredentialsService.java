@@ -45,4 +45,9 @@ public class CredentialsService {
     	Credentials credentials = this.getCredentials(userDetails.getUsername());
     	return credentials.getRole();
     }
+    @Transactional
+	public Optional<Credentials> findByUsername(String username) {
+		return this.credentialsRepository.findByUsername(username);
+		
+	}
 }
