@@ -17,7 +17,7 @@
 			<h6 class="heading" th:text="#{header.typeOfExamination}">Dati Tipologia Esame</h6>
 		</div>
 			
-	<form th:action="@{/admin/typeOfExamination}" method="POST" th:object="${typeOfExamination}" enctype="multipart/form-data">
+	<form th:action="@{/admin/typeOfExamination}" method="POST" th:object="${typeOfExamination}" >
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
@@ -36,13 +36,55 @@
     	   	<tr>
         <td>
 				<h6 class="heading"><span>Costo:<input type="text" th:field="*{cost}" id="typeOfExamination" th:placeholder="${typeOfExamination.cost}" required/></span></h6>
-				<h6 class="heading"><span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span></h6>        </td>
-        <td>
+				<h6 class="heading"><span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span></h6>      
+				  </td>
+        
 				
         <td>
-				<h6 class="heading"><span>Costo:<input type="text" th:field="*{cost}" id="typeOfExamination" th:placeholder="${typeOfExamination.cost}" required/></span></h6>
-				<h6 class="heading"><span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span></h6>        </td>
-        <td>
+			<h6 class="heading">
+			
+			<label>Requisiti: </label> 
+			<span>
+			<select id="requirement" th:field="*{requirement}" >
+			<option th:each="requirement : ${requirement}"
+						th:value="${requirement.id}" th:text="${requirement.nome}"></option>
+			</select>
+			</span>
+			<span>
+			<select id="requirement" th:field="*{requirement}" required>
+			<option th:each="requirement : ${requirement}"
+						th:value="${requirement.id}" th:text="${requirement.nome}"></option>
+			</select>
+			</span>
+			<span>
+			<select id="requirement" th:field="*{requirement}" >
+			<option th:each="requirement : ${requirement}"
+						th:value="${requirement.id}" th:text="${requirement.nome}"></option>
+			</select>
+			</span>
+			<span>
+			<select id="requirement" th:field="*{requirement}" >
+			<option th:each="requirement : ${requirement}"
+						th:value="${requirement.id}" th:text="${requirement.nome}"></option>
+			</select>
+			</span>
+			<span>
+			<select id="requirement" th:field="*{requirement}" >
+			<option th:each="requirement : ${requirement}"
+						th:value="${requirement.id}" th:text="${requirement.nome}"></option>
+			</select>
+			</span>
+			<span>
+			<select id="requirement" th:field="*{requirement}" >
+			<option th:each="requirement : ${requirement}"
+						th:value="${requirement.id}" th:text="${requirement.nome}"></option>
+			</select>
+			</span>
+
+			</h6>
+			
+				
+        </td>
 				
     	</tr>    		
 	</table>
