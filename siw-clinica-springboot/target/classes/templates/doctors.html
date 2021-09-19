@@ -28,7 +28,8 @@
 	<a  href="doctor.html" th:href="@{'/doctor' + '/' + ${doctor.id}}" >
 	
 	
-	<em th:text="|${doctors.id} |">Medici</em></a>
+	<em th:text="|${doctor.id} ${doctor.name} ${doctor.surname} ${doctor.specialization}|">Medici</em>
+	</a>
 	</li>
     </th:block>
       </ul>
