@@ -1,6 +1,6 @@
 package it.uniroma3.siw.spring.controller;
 
-import java.time.LocalDate;
+
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -89,7 +89,6 @@ public class ExamController {
     									Model model, BindingResult bindingResult) {
     	this.examValidator.validate(exam, bindingResult);
         if (!bindingResult.hasErrors()) {
-        	exam.setDateOfPrenotation(LocalDate.now());
         	this.examService.insert(exam);
             model.addAttribute("exams", this.examService.allExams());
             return "exams";

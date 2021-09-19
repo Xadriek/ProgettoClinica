@@ -25,7 +25,7 @@
     <th:block th:each="doctor : ${doctors}">
     
     <li class="one_third">
-	<a  href="doctor.html" th:href="@{'/doctor' + '/' + ${doctor.id}}" >
+	<a   th:href="@{'/doctor' + '/' + ${doctor.id}}" >
 	
 	
 	<em th:text="|${doctor.id} ${doctor.name} ${doctor.surname} ${doctor.specialization}|">Medici</em>
