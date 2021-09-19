@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -27,4 +28,14 @@ public class Doctor {
 	
 	@OneToMany(mappedBy="doctor")
 	private List<Exam> exams;
+	
+	 @Column(nullable = true, length = 64)
+	    private String photos;
+	 
+	 @Transient
+	    public String getPhotosImagePath() {
+	        if (photos == null || id == null) return null;
+	         
+	        return "/doctor-photos/" + id + "/" + photos;
+	    }
 }
