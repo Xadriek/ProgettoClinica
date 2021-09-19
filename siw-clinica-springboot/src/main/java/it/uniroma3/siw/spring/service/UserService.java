@@ -56,7 +56,7 @@ public class UserService {
         List<User> result = new ArrayList<>();
         Iterable<User> iterable = this.userRepository.findAll();
         for(User user : iterable)
-            result.add(user);
+            	result.add(user);
         return result;
     }
 

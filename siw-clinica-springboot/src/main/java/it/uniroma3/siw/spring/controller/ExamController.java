@@ -36,9 +36,9 @@ public class ExamController {
     @RequestMapping(value="/admin/exam", method = RequestMethod.GET)
     public String addExam(Model model) {
     	model.addAttribute("exam", new Exam());
-    	model.addAttribute("patient", this.examService.getUserService().getAllUsers());
-    	model.addAttribute("doctor", this.examService.getDoctorService().allDoctors());
-    	model.addAttribute("typeOfExamination", this.examService.getTypeOfExaminationService().allTypeOfExamination());
+    	model.addAttribute("patients", this.examService.getUserService().getAllUsers());
+    	model.addAttribute("doctors", this.examService.getDoctorService().allDoctors());
+    	model.addAttribute("typeOfExaminations", this.examService.getTypeOfExaminationService().allTypeOfExamination());
         return "examForm";
     }
 
