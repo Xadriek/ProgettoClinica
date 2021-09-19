@@ -44,6 +44,12 @@ public class DoctorController {
         	model.addAttribute("role", this.doctorService.getCredentialsService().getRoleAuthenticated());
     		return "doctors";
     }
+    @RequestMapping(value = "/doctorFree", method = RequestMethod.GET)
+    public String getDoctorsFree(Model model) {
+    		model.addAttribute("doctors", this.doctorService.allDoctors());
+    		return "doctorsFree";
+    }
+    
     
     @RequestMapping(value = "/admin/doctor", method = RequestMethod.POST)
     public String addDoctor(@ModelAttribute("doctor") Doctor doctor, 

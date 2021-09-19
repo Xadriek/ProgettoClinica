@@ -37,10 +37,20 @@ public class TypeOfExaminationController {
     	return "typeOfExamination";
     }
 
+    @RequestMapping(value = "/typeOfExaminationFree", method = RequestMethod.GET)
+    public String getTypeOfExaminationFree(Model model) {
+    		model.addAttribute("typeOfExaminations", this.typeOfExaminationService.allTypeOfExamination());
+    		
+  
+    		
+    		return "typeOfExaminationsFree";
+    }
     @RequestMapping(value = "/typeOfExamination", method = RequestMethod.GET)
     public String getTypeOfExamination(Model model) {
     		model.addAttribute("typeOfExaminations", this.typeOfExaminationService.allTypeOfExamination());
-        	model.addAttribute("role", this.typeOfExaminationService.getCredentialsService().getRoleAuthenticated());
+    		
+    		model.addAttribute("role", this.typeOfExaminationService.getCredentialsService().getRoleAuthenticated());
+    		
     		return "typeOfExaminations";
     }
     

@@ -4,13 +4,9 @@
 	 </head>
 
 <body id="top">
-	<div th:if="${role}=='ADMIN'">
-		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
+	<div >
+		<header th:replace="fragments/default.html :: intestazione"></header>
 	</div>
-	<div th:unless="${role}=='ADMIN'">
-		<header th:replace="fragments/base.html :: intestazione"></header>
-	</div>
-	
 	
 	
 	
@@ -18,17 +14,17 @@
    <figure class="hoc container clear imgroup"> 
     <!-- ################################################################################################ -->
     <figcaption class="sectiontitle">
-      <p class="heading underline font-x2" th:text="#{header.doctor}">Elenco Medici</p>
+      <p class="heading underline font-x2" th:text="#{header.typeOfExamination}">Elenco Tipologia</p>
     </figcaption>
     <ul class="nospace group">
     
-    <th:block th:each="doctor : ${doctors}">
+    <th:block th:each="typeOfExamination : ${typeOfExaminations}">
     
     <li class="one_third">
-	<a  href="doctor.html" th:href="@{'/doctor' + '/' + ${doctor.id}}" >
+	<a  href="typeOfExamination.html" th:href="@{'/typeOfExamination' + '/' + ${typeOfExamination.id}}" >
 	
 	
-	<em th:text="|${doctors.id} |">Medici</em></a>
+	<em th:text="|${typeOfExaminations.id} |">Tipologia</em></a>
 	</li>
     </th:block>
       </ul>
