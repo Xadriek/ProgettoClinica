@@ -26,8 +26,8 @@
         <td>				
 			<h6 class="heading"><span>
 			<label>Esame: </label> <select id="exam" th:field="*{exam}" required>
-			<option th:each="exam : ${exam}"
-						th:value="${exam.id}" th:text="${exam.nome}"></option>
+			<option th:each="exam : ${exams}"
+						th:value="${exam.id}" th:text="${exam.id} "></option>
 			</select>
 			</span></h6>
         </td>

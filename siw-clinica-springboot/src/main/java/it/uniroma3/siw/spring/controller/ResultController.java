@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.uniroma3.siw.spring.controller.validator.ResultValidator;
 import it.uniroma3.siw.spring.model.Exam;
 import it.uniroma3.siw.spring.model.Result;
+import it.uniroma3.siw.spring.service.ExamService;
 import it.uniroma3.siw.spring.service.ResultService;
 
 @Controller
@@ -20,12 +21,16 @@ public class ResultController {
 	@Autowired
 	private ResultService resultService;
 	
+	@Autowired
+	private ExamService examService;
+	
    @Autowired
     private ResultValidator resultValidator;
         
     @RequestMapping(value="/admin/result", method = RequestMethod.GET)
     public String addResult(Model model) {
     	model.addAttribute("result", new Result());
+    	model.addAttribute("exams", this.examService.allExams());
         return "resultForm";
     }
 
