@@ -61,11 +61,11 @@ public class ExamController {
     	
 
 }
-  /*  @RequestMapping(value = "/exam", method = RequestMethod.GET)
+    @RequestMapping(value = "/exam", method = RequestMethod.GET)
     public String getExams(Model model) {
     		model.addAttribute("exams", this.examService.allExams());
     		return "exams";
-    }*/
+    }
     @RequestMapping(value = "/exam/patient", method = RequestMethod.GET)
     public String getExamsByPatient(@ModelAttribute("patient") User patient,Model model) {
     		model.addAttribute("exams", this.examService.examByPatient(patient));

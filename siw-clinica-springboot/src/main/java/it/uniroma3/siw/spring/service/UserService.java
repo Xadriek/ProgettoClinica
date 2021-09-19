@@ -20,6 +20,9 @@ public class UserService {
 
     @Autowired
     protected UserRepository userRepository;
+    
+    @Autowired
+	private CredentialsService credentialsService;
 
     /**
      * This method retrieves a User from the DB based on its ID.
@@ -56,4 +59,20 @@ public class UserService {
             result.add(user);
         return result;
     }
+
+    @Transactional
+	public CredentialsService getCredentialsService() {
+		return credentialsService;
+	}
+    
+    @Transactional
+    public List<User> getUserByRole() {
+        List<User> result = new ArrayList<>();
+        Iterable<User> iterable = this.userRepository.findAll();
+        for(User user : iterable)
+            result.add(user);
+        return result;
+    }
+
+	
 }
