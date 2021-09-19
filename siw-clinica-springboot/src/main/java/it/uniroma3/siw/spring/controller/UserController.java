@@ -23,7 +23,7 @@ public class UserController {
 	@RequestMapping(value = "/patient/{id}", method = RequestMethod.GET)
     public String getExam(@PathVariable("id") Long id, Model model) {
 		
-    	model.addAttribute("exam", this.userService.getUser(id));
+    	model.addAttribute("patient", this.userService.getUser(id));
     	model.addAttribute("role", this.userService.getCredentialsService().getRoleAuthenticated());
 
     	return "patient";

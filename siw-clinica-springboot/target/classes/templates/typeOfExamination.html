@@ -35,12 +35,7 @@
 							</div>
 							<p class="nospace"></p>
 							<div th:unless="${typeOfExamination}">Non esiste</div>
-							<div th:if="${session.role}=='ADMIN'">
-								<footer class="center">
-								
-								<a class="btn" th:href="@{'/admin/typeOfExamination' + '/' + ${typeOfExamination.id}}">elimina</a>
-								</footer>
-							</div>
+							
 						</article>
           			</li>
         	</ul>

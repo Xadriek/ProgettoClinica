@@ -69,6 +69,7 @@ public class ExamController {
     @RequestMapping(value = "/exam", method = RequestMethod.GET)
     public String getExams(Model model) {
     		model.addAttribute("exams", this.examService.allExams());
+    		model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
     		return "exams";
     }
     @RequestMapping(value = "/exam/patient", method = RequestMethod.GET)

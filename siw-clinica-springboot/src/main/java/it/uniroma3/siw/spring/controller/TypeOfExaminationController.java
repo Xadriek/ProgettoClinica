@@ -38,7 +38,7 @@ public class TypeOfExaminationController {
 
    @RequestMapping(value = "/typeOfExamination/{id}", method = RequestMethod.GET)
     public String getTypeOfExamination(@PathVariable("id") Long id, Model model) {
-    	model.addAttribute("typeOfTypeOfExaminationination", this.typeOfExaminationService.typeOfExaminationById(id));
+    	model.addAttribute("typeOfExamination", this.typeOfExaminationService.typeOfExaminationById(id));
     	model.addAttribute("role", this.typeOfExaminationService.getCredentialsService().getRoleAuthenticated());
     	return "typeOfExamination";
     }
