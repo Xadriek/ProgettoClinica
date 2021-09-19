@@ -21,8 +21,11 @@ public class Exam {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
 	private LocalDate dateOfPrenotation;
+	
 	private LocalDate dateExamination;
+	
 	@OneToMany(mappedBy="exam",cascade=CascadeType.ALL)
 	private List<Result> result;
 	@ManyToOne

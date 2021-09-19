@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.ResultValidator;
+import it.uniroma3.siw.spring.model.Exam;
 import it.uniroma3.siw.spring.model.Result;
 import it.uniroma3.siw.spring.service.ResultService;
 
@@ -31,6 +32,14 @@ public class ResultController {
     @RequestMapping(value = "/result/{id}", method = RequestMethod.GET)
     public String getResult(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("result", this.resultService.resultById(id));
+    	model.addAttribute("role", this.resultService.getCredentialsService().getRoleAuthenticated());
+
+    	return "result";
+    }
+    
+    @RequestMapping(value = "/result/exam", method = RequestMethod.GET)
+    public String getResultByExam(@ModelAttribute("exam") Exam exam, Model model) {
+    	model.addAttribute("result", this.resultService.resultByExam(exam));
     	model.addAttribute("role", this.resultService.getCredentialsService().getRoleAuthenticated());
 
     	return "result";

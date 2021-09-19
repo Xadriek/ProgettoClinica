@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.RequirementValidator;
 import it.uniroma3.siw.spring.model.Requirement;
+import it.uniroma3.siw.spring.model.TypeOfExamination;
 import it.uniroma3.siw.spring.service.RequirementService;
 
 @Controller
@@ -31,6 +32,14 @@ public class RequirementController {
     @RequestMapping(value = "/requirement/{id}", method = RequestMethod.GET)
     public String getRequirement(@PathVariable("id") Long id, Model model) {
     	model.addAttribute("requirement", this.requirementService.requirementById(id));
+    	model.addAttribute("role", this.requirementService.getCredentialsService().getRoleAuthenticated());
+
+    	return "requirement";
+    }
+    
+    @RequestMapping(value = "/requirement/type", method = RequestMethod.GET)
+    public String getRequirementByType(@ModelAttribute("typeOfExamination") TypeOfExamination typeOfExamination, Model model) {
+    	model.addAttribute("requirement", this.requirementService.requirementByTypeOfExamination(typeOfExamination));
     	model.addAttribute("role", this.requirementService.getCredentialsService().getRoleAuthenticated());
 
     	return "requirement";

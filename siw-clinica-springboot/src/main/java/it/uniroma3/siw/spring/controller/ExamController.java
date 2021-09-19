@@ -1,5 +1,7 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.time.LocalDate;
+
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.ExamValidator;
+import it.uniroma3.siw.spring.model.Doctor;
 import it.uniroma3.siw.spring.model.Exam;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.ExamService;
@@ -63,9 +66,15 @@ public class ExamController {
     		model.addAttribute("exams", this.examService.allExams());
     		return "exams";
     }*/
-    @RequestMapping(value = "/exam", method = RequestMethod.GET)
+    @RequestMapping(value = "/exam/patient", method = RequestMethod.GET)
     public String getExamsByPatient(@ModelAttribute("patient") User patient,Model model) {
     		model.addAttribute("exams", this.examService.examByPatient(patient));
+    		return "exams";
+    }
+    
+    @RequestMapping(value = "/exam/doctor", method = RequestMethod.GET)
+    public String getExamsByDoctor(@ModelAttribute("doctor") Doctor doctor,Model model) {
+    		model.addAttribute("exams", this.examService.examByDoctor(doctor));
     		return "exams";
     }
     
@@ -74,6 +83,7 @@ public class ExamController {
     									Model model, BindingResult bindingResult) {
     	this.examValidator.validate(exam, bindingResult);
         if (!bindingResult.hasErrors()) {
+        	exam.setDateOfPrenotation(LocalDate.now());
         	this.examService.insert(exam);
             model.addAttribute("exams", this.examService.allExams());
             return "exams";

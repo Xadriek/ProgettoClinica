@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Requirement;
+import it.uniroma3.siw.spring.model.TypeOfExamination;
 import it.uniroma3.siw.spring.repository.RequirementRepository;
 
 @Service
@@ -45,5 +46,10 @@ public class RequirementService {
 	@Transactional
 	public Optional<Requirement> requirementById(Long id) {
 		return requirementRepository.findById(id);
+	}
+
+	@Transactional
+	public Optional<Requirement> requirementByTypeOfExamination(TypeOfExamination typeOfExamination) {
+		return requirementRepository.findByTypeOfExamination(typeOfExamination);
 	}
 }
