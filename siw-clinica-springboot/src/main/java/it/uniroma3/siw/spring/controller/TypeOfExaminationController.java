@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.TypeOfExaminationValidator;
+import it.uniroma3.siw.spring.model.Requirement;
 import it.uniroma3.siw.spring.model.TypeOfExamination;
+import it.uniroma3.siw.spring.service.RequirementService;
 import it.uniroma3.siw.spring.service.TypeOfExaminationService;
 
 @Controller
@@ -23,10 +25,14 @@ public class TypeOfExaminationController {
 	
     @Autowired
     private TypeOfExaminationValidator typeOfExaminationValidator;
+    
+    @Autowired
+	private RequirementService requirementService;
         
     @RequestMapping(value="/admin/typeOfExamination", method = RequestMethod.GET)
     public String addTypeOfExamination(Model model) {
     	model.addAttribute("typeOfExamination", new TypeOfExamination());
+    	model.addAttribute("requirement",this.requirementService.allRequirements());
         return "typeOfExaminationForm";
     }
 
@@ -55,11 +61,25 @@ public class TypeOfExaminationController {
     }
     
     @RequestMapping(value = "/admin/typeOfExamination", method = RequestMethod.POST)
-    public String newTypeOfExamination(@ModelAttribute("typeOfExamination") TypeOfExamination typeOfExamination, 
+    public String newTypeOfExamination(@ModelAttribute("typeOfExamination") TypeOfExamination typeOfExamination,
+    									@ModelAttribute("requirement1") Requirement requirement1,
+    									@ModelAttribute("requirement2") Requirement requirement2,
+    									@ModelAttribute("requirement3") Requirement requirement3,
+    									@ModelAttribute("requirement4") Requirement requirement4,
+    									@ModelAttribute("requirement5") Requirement requirement5,
+    									@ModelAttribute("requirement6") Requirement requirement6,
     									Model model, BindingResult bindingResult) {
     	this.typeOfExaminationValidator.validate(typeOfExamination, bindingResult);
         if (!bindingResult.hasErrors()) {
+        	
+        	typeOfExamination.getRequirements().add(requirement1);
+        	typeOfExamination.getRequirements().add(requirement2);
+        	typeOfExamination.getRequirements().add(requirement3);
+        	typeOfExamination.getRequirements().add(requirement4);
+        	typeOfExamination.getRequirements().add(requirement5);
+        	typeOfExamination.getRequirements().add(requirement6);
         	this.typeOfExaminationService.insert(typeOfExamination);
+        	
             model.addAttribute("typeOfExaminations", this.typeOfExaminationService.allTypeOfExamination());
             return "typeOfExaminations";
         }
