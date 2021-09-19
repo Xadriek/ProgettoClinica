@@ -22,6 +22,20 @@
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
 	<table>
+	<tr>
+        <td>				
+			<h6 class="heading"><span>
+			<label>Esame: </label> <select id="exam" th:field="*{exam}" required>
+			<option th:each="exam : ${exam}"
+						th:value="${exam.id}" th:text="${exam.nome}"></option>
+			</select>
+			</span></h6>
+        </td>
+        <td>				
+			
+        </td>
+         
+    	</tr>  
     	<tr>
         <td>
         	<h6 class="heading"><span>Nome:<input type="text" th:field="*{name}" id="result" th:placeholder="${result.name}" required /></span></h6>

@@ -39,7 +39,11 @@
 				<h6 class="heading"><span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span></h6>        </td>
         <td>
 				
-        
+        <td>
+				<h6 class="heading"><span>Costo:<input type="text" th:field="*{cost}" id="typeOfExamination" th:placeholder="${typeOfExamination.cost}" required/></span></h6>
+				<h6 class="heading"><span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span></h6>        </td>
+        <td>
+				
     	</tr>    		
 	</table>
 	<div>
