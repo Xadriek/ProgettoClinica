@@ -17,7 +17,7 @@
 			<h6 class="heading" th:text="#{header.requirement}">Dati Requisiti</h6>
 		</div>
 			
-	<form th:action="@{/admin/requirement}" method="POST" th:object="${requirement}" enctype="multipart/form-data">
+	<form th:action="@{/admin/requirement}" method="POST" th:object="${requirement}" >
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
