@@ -67,18 +67,20 @@ public class ExamService {
 		@Transactional
 		public boolean alreadyExists(Exam exam) {
 			Optional<Exam> exams = this.examRepository.findById(exam.getId());
-			if (exams.isPresent())
+			if (exams.get()!=null)
 				return true;
 			else 
 				return false;
 		}
-
+		@Transactional
 		public UserService getUserService() {
 			return this.userService;
 		}
+		@Transactional
 		public DoctorService getDoctorService() {
 			return this.doctorService;
 		}
+		@Transactional
 		public TypeOfExaminationService getTypeOfExaminationService() {
 			return this.typeOfExaminationService;
 		}

@@ -28,8 +28,8 @@ public class TypeOfExamination {
 	@OneToMany(mappedBy="typeOfExamination",cascade = CascadeType.ALL)
 	private List<Requirement> requirements;
 	
-	@OneToMany(mappedBy="typeOfExamination",cascade = CascadeType.ALL)
-	private List<Exam> exams;
+	@OneToMany(mappedBy="typeOfExamination",cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	private List<Exam> exam;
 	
 	
 }

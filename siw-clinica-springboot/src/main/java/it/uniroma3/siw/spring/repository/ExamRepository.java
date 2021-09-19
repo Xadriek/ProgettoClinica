@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.repository;
 
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,8 @@ public interface ExamRepository extends CrudRepository<Exam, Long>{
 	public Optional<List<Exam>> findByPatient(User Patient);
 	
 	public Optional<List<Exam>> findByDoctor(Doctor doctor);
+	
+	public Optional<Exam> findById(Long id);
+
+	public Optional<Exam> findByDateExaminationAndDoctor(String dateExamination, Doctor doctor);
 }

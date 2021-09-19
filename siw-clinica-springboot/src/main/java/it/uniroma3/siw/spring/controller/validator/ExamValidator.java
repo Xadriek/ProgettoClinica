@@ -24,10 +24,7 @@ public class ExamValidator implements Validator {
 
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
-			if (this.examService.alreadyExists((Exam)o)) {
-				logger.debug("e' un duplicato");
-				errors.reject("duplicato");
-			}
+			
 		}
 	}
 

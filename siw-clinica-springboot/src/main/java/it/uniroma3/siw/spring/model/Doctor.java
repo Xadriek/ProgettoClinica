@@ -2,6 +2,7 @@ package it.uniroma3.siw.spring.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,8 +27,8 @@ public class Doctor {
 	@Column(nullable=false)
 	private String specialization;
 	
-	@OneToMany(mappedBy="doctor")
-	private List<Exam> exams;
+	@OneToMany(mappedBy="doctor",cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	private List<Exam> exam;
 	
 	 @Column(nullable = true, length = 64)
 	    private String photos;

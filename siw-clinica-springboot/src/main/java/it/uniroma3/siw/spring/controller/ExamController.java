@@ -2,6 +2,8 @@ package it.uniroma3.siw.spring.controller;
 
 
 
+import java.time.LocalDate;
+
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +16,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import it.uniroma3.siw.spring.controller.validator.ExamValidator;
+
 import it.uniroma3.siw.spring.model.Exam;
+
 import it.uniroma3.siw.spring.service.ExamService;
-import it.uniroma3.siw.spring.service.UserService;
+
 
 @Controller
 public class ExamController {
@@ -25,13 +28,12 @@ public class ExamController {
 	@Autowired
 	private ExamService examService;
 	
-	@Autowired
-	private UserService userService;
-	
 
 	
-    @Autowired
-    private ExamValidator examValidator;
+	
+
+
+
         
     @RequestMapping(value="/admin/exam", method = RequestMethod.GET)
     public String addExam(Model model) {
@@ -75,7 +77,7 @@ public class ExamController {
     @RequestMapping(value = "/exam/patient", method = RequestMethod.GET)
     public String getExamsByPatient(Model model) {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    		model.addAttribute("exams", this.examService.examByPatient(this.userService.getUserByUsername(userDetails.getUsername())));
+    		model.addAttribute("exams", this.examService.examByPatient(this.examService.getUserService().getUserByUsername(userDetails.getUsername())));
     		return "exams";
     }
    /* 
@@ -88,10 +90,16 @@ public class ExamController {
     @RequestMapping(value = "/admin/exam", method = RequestMethod.POST)
     public String newExam(@ModelAttribute("exam") Exam exam, 
     									Model model, BindingResult bindingResult) {
-    	this.examValidator.validate(exam, bindingResult);
+    	
+    	
         if (!bindingResult.hasErrors()) {
+        	
+        	exam.setDateOfPrenotation(LocalDate.now());
+        	
         	this.examService.insert(exam);
+        	
             model.addAttribute("exams", this.examService.allExams());
+            
             return "exams";
         }
         return "examForm";

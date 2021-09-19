@@ -1,7 +1,7 @@
 package it.uniroma3.siw.spring.controller;
 
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.TypeOfExaminationValidator;
-import it.uniroma3.siw.spring.model.Requirement;
 import it.uniroma3.siw.spring.model.TypeOfExamination;
 import it.uniroma3.siw.spring.service.RequirementService;
 import it.uniroma3.siw.spring.service.TypeOfExaminationService;
@@ -28,6 +27,8 @@ public class TypeOfExaminationController {
     
     @Autowired
 	private RequirementService requirementService;
+    
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
         
     @RequestMapping(value="/admin/typeOfExamination", method = RequestMethod.GET)
     public String addTypeOfExamination(Model model) {
@@ -65,12 +66,13 @@ public class TypeOfExaminationController {
     									
     									Model model, BindingResult bindingResult) {
     	this.typeOfExaminationValidator.validate(typeOfExamination, bindingResult);
+    	logger.debug("qui ce so arrivato");
         if (!bindingResult.hasErrors()) {
-        	
         	
         	this.typeOfExaminationService.insert(typeOfExamination);
         	
             model.addAttribute("typeOfExaminations", this.typeOfExaminationService.allTypeOfExamination());
+            model.addAttribute("role", this.typeOfExaminationService.getCredentialsService().getRoleAuthenticated());
             return "typeOfExaminations";
         }
         return "typeOfExaminationForm";

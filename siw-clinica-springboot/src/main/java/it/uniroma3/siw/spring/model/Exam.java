@@ -19,19 +19,37 @@ import lombok.Data;
 public class Exam {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private LocalDate dateOfPrenotation;
 	
-	private LocalDate dateExamination;
+	private String dateExamination;
 	
 	@OneToMany(mappedBy="exam",cascade=CascadeType.ALL)
 	private List<Result> result;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private User patient;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Doctor doctor;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private TypeOfExamination typeOfExamination;
+	
+	public Exam(Long id, LocalDate dateOfPrenotation, String dateExamination, List<Result> result, User patient,
+			Doctor doctor, TypeOfExamination typeOfExamination) {
+		super();
+		this.id = id;
+		this.dateOfPrenotation = dateOfPrenotation;
+		this.dateExamination = dateExamination;
+		this.result = result;
+		this.patient = patient;
+		this.doctor = doctor;
+		this.typeOfExamination = typeOfExamination;
+	}
+
+	public Exam() {
+		super();
+	}
+	
+	
 }
