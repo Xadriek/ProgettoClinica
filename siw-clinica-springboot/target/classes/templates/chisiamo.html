@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/base.html :: headerfiles(title='Progetto Clinica')">
+	 </head>
+
+<body id="top">
+		<div th:if="${role}=='ADMIN'">
+		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
+	</div>
+	<div th:unless="${role}=='ADMIN'">
+		<header th:replace="fragments/base.html :: intestazione"></header>
+	</div>
+	
+ 
+<!-- Pagina Centrale ################################################################################# -->  	
+
+<div class="wrapper row3">
+  <main class="hoc container clear"> 
+    <!-- main body -->
+   <section class="group">
+      <div class="one_half first"><img class="inspace-15 borderedbox" src="../images/chisiamo.png" alt=""></div>
+      <div class="one_half">
+      <div class="content">
+		<div>
+			<article>
+              <h6 class="heading"><a href="#">Chi siamo </a></h6>
+              <p class="nospace">Sicuramente due studenti molto volenterosi che cercano di fare sempre al meglio non risparmiandosi mai!</p>
+            </article>
+		</div>
+		
+		
+		</div>
+	  <div>
+	  </div>
+      </div>
+    </section>
+    <!-- ############################################################################################# -->
+    <!-- / main body -->
+    <div class="clear"></div>
+    <!-- ################################################################################################ -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+
+
+		<footer th:replace="fragments/base.html :: fondo"></footer>
+
+</body>
+</html>
