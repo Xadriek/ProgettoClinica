@@ -7,12 +7,11 @@
 	<div th:if="${role}=='ADMIN'">
 		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
 	</div>
-	<div th:IF="${role}=='DEFAULT'">
+	<div th:unless="${role}=='ADMIN'">
 		<header th:replace="fragments/base.html :: intestazione"></header>
 	</div>
-	<div th:unless="*">
-		<header th:replace="fragments/default.html :: intestazione"></header>
-	</div>
+	
+	
 	
 	
 <div class="bgded overlay" style="background-image:url('images/backgrounds/01.png');">
