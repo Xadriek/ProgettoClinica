@@ -7,8 +7,11 @@
 	<div th:if="${role}=='ADMIN'">
 		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
 	</div>
-	<div th:unless="${role}=='ADMIN'">
+	<div th:IF="${role}=='DEFAULT'">
 		<header th:replace="fragments/base.html :: intestazione"></header>
+	</div>
+	<div th:unless="*">
+		<header th:replace="fragments/default.html :: intestazione"></header>
 	</div>
 	
 	
