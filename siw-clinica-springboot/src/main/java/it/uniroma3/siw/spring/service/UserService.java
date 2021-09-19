@@ -64,15 +64,13 @@ public class UserService {
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
 	}
+
+	public User getUserByUsername(String username) {
+		
+		return this.credentialsService.findByUsername(username).get().getUser();
+	}
     
-    @Transactional
-    public List<User> getUserByRole() {
-        List<User> result = new ArrayList<>();
-        Iterable<User> iterable = this.userRepository.findAll();
-        for(User user : iterable)
-            result.add(user);
-        return result;
-    }
+    
 
 	
 }

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,18 +14,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import it.uniroma3.siw.spring.controller.validator.ExamValidator;
-import it.uniroma3.siw.spring.model.Doctor;
 import it.uniroma3.siw.spring.model.Exam;
-import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.ExamService;
+import it.uniroma3.siw.spring.service.UserService;
 
 @Controller
 public class ExamController {
 	
 	@Autowired
 	private ExamService examService;
+	
+	@Autowired
+	private UserService userService;
+	
+
 	
     @Autowired
     private ExamValidator examValidator;
@@ -67,16 +72,17 @@ public class ExamController {
     		return "exams";
     }
     @RequestMapping(value = "/exam/patient", method = RequestMethod.GET)
-    public String getExamsByPatient(@ModelAttribute("patient") User patient,Model model) {
-    		model.addAttribute("exams", this.examService.examByPatient(patient));
+    public String getExamsByPatient(Model model) {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    		model.addAttribute("exams", this.examService.examByPatient(this.userService.getUserByUsername(userDetails.getUsername())));
     		return "exams";
     }
-    
+   /* 
     @RequestMapping(value = "/exam/doctor", method = RequestMethod.GET)
     public String getExamsByDoctor(@ModelAttribute("doctor") Doctor doctor,Model model) {
     		model.addAttribute("exams", this.examService.examByDoctor(doctor));
     		return "exams";
-    }
+    }*/
     
     @RequestMapping(value = "/admin/exam", method = RequestMethod.POST)
     public String newExam(@ModelAttribute("exam") Exam exam, 
@@ -90,4 +96,5 @@ public class ExamController {
         }
         return "examForm";
     }
+    
 }
