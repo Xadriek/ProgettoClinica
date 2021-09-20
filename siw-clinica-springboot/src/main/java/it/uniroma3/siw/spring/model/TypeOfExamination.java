@@ -39,6 +39,11 @@ public class TypeOfExamination {
 		return "TypeOfExamination [id=" + id + ", name=" + name + ", description=" + description + ", cost=" + cost
 				+ "]";
 	}
+	
+	public String toStringPDF() {
+		return "TypeOfExamination:  " + name + "      Description:  " + description + "      Cost:  " + cost;
+	}
+	
 
 	
 	

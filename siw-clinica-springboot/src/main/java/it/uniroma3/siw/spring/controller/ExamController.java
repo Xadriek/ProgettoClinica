@@ -2,7 +2,13 @@ package it.uniroma3.siw.spring.controller;
 
 
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
+
+import javax.servlet.http.HttpServletResponse;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
@@ -12,14 +18,18 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.lowagie.text.DocumentException;
+
 import it.uniroma3.siw.spring.model.Exam;
 
 import it.uniroma3.siw.spring.service.ExamService;
+import it.uniroma3.siw.upload.ExamPDFExporter;
 
 
 @Controller
@@ -98,5 +108,18 @@ public class ExamController {
         }
         return "examForm";
     }
-    
+    @GetMapping("/exam/export/pdf/{id}")
+    public void exportToPDF(@PathVariable("id") Long id,HttpServletResponse response) throws DocumentException, IOException {
+    	Exam exam=this.examService.examById(id);
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=exam_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue); 
+        ExamPDFExporter exporter = new ExamPDFExporter(exam);
+        exporter.export(response);
+         
+    }
 }

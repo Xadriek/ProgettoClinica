@@ -34,7 +34,9 @@
 							</div>
 							<p class="nospace"></p>
 							<div th:unless="${exam}">Non esiste</div>
-							
+							<div>
+							<a class="btn" th:href="@{'/exam/export/pdf' + '/' + ${exam.id}}">Export to PDF</a>
+							</div>
 							
 						</article>
           			</li>

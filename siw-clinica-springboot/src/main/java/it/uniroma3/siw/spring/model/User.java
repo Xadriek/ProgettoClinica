@@ -34,6 +34,10 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", nome=" + nome + ", cognome=" + cognome + "]";
 	}
+	
+	public String toStringPDF() {
+		return "Name patient:  " + nome + "     Surname patient:  " + cognome;
+	}
 
 	
 	

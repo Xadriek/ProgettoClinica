@@ -37,6 +37,16 @@ public class Exam {
 	@ManyToOne
 	private TypeOfExamination typeOfExamination;
 	
+	@Override
+	public String toString() {
+		return "Exam [id=" + id + ", dateOfPrenotation=" + dateOfPrenotation + ", dateExamination=" + dateExamination
+				+ ", typeOfExamination=" + typeOfExamination + "]";
+	}
+	
+	public String toStringPDF() {
+		return "Exam id:" + id + "     DateOfPrenotation: " + dateOfPrenotation + "      DateExamination:" + dateExamination;
+	}
+	
 	
 	
 	

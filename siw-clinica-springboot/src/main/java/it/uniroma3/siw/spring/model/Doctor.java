@@ -47,8 +47,15 @@ public class Doctor {
 	@Override
 	public String toString() {
 		return "Doctor [id=" + id + ", name=" + name + ", surname=" + surname + ", specialization=" + specialization
-				+ ", photos=" + photos + "]";
+				+ "]";
 	}
+	
+	
+	public String toStringPDF() {
+		return "Doctor:  " + name + "  " + surname + "       specialization:  " + specialization;
+	}
+
+	
 	 
 	 
 }
