@@ -65,9 +65,9 @@ public class RequirementController {
         }
         return "requirementForm";
     }
-    @RequestMapping(value = "/requirementComplete", method = RequestMethod.GET)
-    public String stopRequirements(@ModelAttribute("requirement") Requirement requirement,Model model) {
-    		model.addAttribute("typeOfExamination",requirement.getTypeOfExamination() );
+    @RequestMapping(value = "/requirementComplete/{id}", method = RequestMethod.GET)
+    public String stopRequirements(@PathVariable("id") Long id,Model model) {
+    		model.addAttribute("typeOfExamination",this.requirementService.getTypeOfExaminationService().typeOfExaminationById(id));
         	model.addAttribute("role", this.requirementService.getCredentialsService().getRoleAuthenticated());
     		return "typeOfExamination";
     }

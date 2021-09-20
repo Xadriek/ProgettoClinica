@@ -19,7 +19,8 @@ public class RequirementService {
 	private RequirementRepository requirementRepository;
 	@Autowired
 	private CredentialsService credentialsService;
-
+	@Autowired
+	private TypeOfExaminationService typeOfExaminationService;
 	@Transactional
 	public Requirement insert(Requirement requirement) {
 		return requirementRepository.save(requirement);
@@ -42,7 +43,10 @@ public class RequirementService {
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
 	}
-
+	@Transactional
+	public TypeOfExaminationService getTypeOfExaminationService() {
+		return typeOfExaminationService;
+	}
 	@Transactional
 	public Optional<Requirement> requirementById(Long id) {
 		return requirementRepository.findById(id);
