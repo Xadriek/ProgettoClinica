@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.TypeOfExaminationValidator;
+import it.uniroma3.siw.spring.model.Requirement;
 import it.uniroma3.siw.spring.model.TypeOfExamination;
 import it.uniroma3.siw.spring.service.RequirementService;
 import it.uniroma3.siw.spring.service.TypeOfExaminationService;
@@ -65,15 +66,17 @@ public class TypeOfExaminationController {
     public String newTypeOfExamination(@ModelAttribute("typeOfExamination") TypeOfExamination typeOfExamination,
     									
     									Model model, BindingResult bindingResult) {
-    	this.typeOfExaminationValidator.validate(typeOfExamination, bindingResult);
+    	
     	logger.debug("qui ce so arrivato");
         if (!bindingResult.hasErrors()) {
         	
-        	this.typeOfExaminationService.insert(typeOfExamination);
         	
-            model.addAttribute("typeOfExaminations", this.typeOfExaminationService.allTypeOfExamination());
             model.addAttribute("role", this.typeOfExaminationService.getCredentialsService().getRoleAuthenticated());
-            return "typeOfExaminations";
+            Requirement requirement=new Requirement();
+            requirement.setTypeOfExamination(typeOfExamination);
+            model.addAttribute("requirement",requirement);
+            this.typeOfExaminationService.insert(typeOfExamination);
+            return "requirementForm";
         }
         return "typeOfExaminationForm";
     }

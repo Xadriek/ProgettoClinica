@@ -21,7 +21,7 @@ public class RequirementValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "value", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "description", "required");
 		
 
 		if (!errors.hasErrors()) {

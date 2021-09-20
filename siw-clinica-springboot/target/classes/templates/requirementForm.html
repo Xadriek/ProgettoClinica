@@ -17,7 +17,7 @@
 			<h6 class="heading" th:text="#{header.requirement}">Dati Requisiti</h6>
 		</div>
 			
-	<form th:action="@{/admin/requirement}" method="POST" th:object="${requirement}" >
+	<form th:action="@{requirement}" method="POST" th:object="${requirement}" >
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
@@ -36,7 +36,7 @@
     	   <tr>
         <td>		
     	   		
-    	   		<footer><a class="btn" th:href="@{/admin/requirement}">Inserisci Requisito</a></footer>
+    	   		
     	 </td>
         <td>
         	
@@ -50,9 +50,11 @@
 
 				</div>
 			<div>
-				<h6 class="heading"><span><button type="submit">Invio</button></span></h6>
+				<h6 class="heading"><span><button type="submit">Inserisci requisito</button></span></h6>
 			</div>
-		
+			<div>
+			<footer><a class="btn" th:href="@{/requirementComplete}">Termina</a></footer>
+			</div>
 	</form>
 	</div>
 	  <div>

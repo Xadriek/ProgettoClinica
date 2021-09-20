@@ -53,14 +53,22 @@ public class RequirementController {
     }
     
     @RequestMapping(value = "/admin/requirement", method = RequestMethod.POST)
-    public String addRequirement(@ModelAttribute("requirement") Requirement requirement, 
+    public String addRequirement(@ModelAttribute("requirement") Requirement requirement,
     									Model model, BindingResult bindingResult) {
     	this.requirementValidator.validate(requirement, bindingResult);
         if (!bindingResult.hasErrors()) {
-        	this.requirementService.insert(requirement);
-            model.addAttribute("requirements", this.requirementService.allRequirements());
-            return "requirements";
+        	Requirement req= this.requirementService.insert(requirement);
+        	 Requirement _requirement=new Requirement();
+             _requirement.setTypeOfExamination(req.getTypeOfExamination());
+             model.addAttribute("requirement",_requirement);
+            return "requirementForm";
         }
         return "requirementForm";
+    }
+    @RequestMapping(value = "/requirementComplete", method = RequestMethod.GET)
+    public String stopRequirements(@ModelAttribute("requirement") Requirement requirement,Model model) {
+    		model.addAttribute("typeOfExamination",requirement.getTypeOfExamination() );
+        	model.addAttribute("role", this.requirementService.getCredentialsService().getRoleAuthenticated());
+    		return "typeOfExamination";
     }
 }
