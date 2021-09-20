@@ -55,11 +55,11 @@ public class RequirementController {
     @RequestMapping(value = "/admin/requirement", method = RequestMethod.POST)
     public String addRequirement(@ModelAttribute("requirement") Requirement requirement,
     									Model model, BindingResult bindingResult) {
-    	this.requirementValidator.validate(requirement, bindingResult);
+    	
         if (!bindingResult.hasErrors()) {
-        	Requirement req= this.requirementService.insert(requirement);
+        	this.requirementService.insert(requirement);
         	 Requirement _requirement=new Requirement();
-             _requirement.setTypeOfExamination(req.getTypeOfExamination());
+             _requirement.setTypeOfExamination(requirement.getTypeOfExamination());
              model.addAttribute("requirement",_requirement);
             return "requirementForm";
         }

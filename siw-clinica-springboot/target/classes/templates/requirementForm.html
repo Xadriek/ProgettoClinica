@@ -31,7 +31,10 @@
         	<h6 class="heading"><span>Descrizione:<input type="text" th:field="*{description}" id="requirement" th:placeholder="${requirement.description}" required/></span></h6>
 			<h6 class="heading"><span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span></h6>
         </td>
-     
+     	<td>
+        	<h6 class="heading"><span>Tipologia:<input type="text" th:field="*{typeOfExamination}" id="requirement" th:placeholder="${requirement.typeOfExamination}" required/></span></h6>
+			<h6 class="heading"><span th:if="${#fields.hasErrors('typeOfExamination')}" th:errors="*{typeOfExamination}"></span></h6>
+        </td>
     	</tr>
     	   <tr>
         <td>		

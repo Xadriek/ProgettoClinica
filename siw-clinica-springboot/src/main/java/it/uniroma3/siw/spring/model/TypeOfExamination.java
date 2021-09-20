@@ -37,8 +37,10 @@ public class TypeOfExamination {
 	@Override
 	public String toString() {
 		return "TypeOfExamination [id=" + id + ", name=" + name + ", description=" + description + ", cost=" + cost
-				+ ", requirements=" + requirements + "]";
+				+ "]";
 	}
+
+	
 	
 	
 	
