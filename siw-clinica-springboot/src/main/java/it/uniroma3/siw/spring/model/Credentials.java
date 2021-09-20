@@ -15,7 +15,7 @@ public class Credentials {
 	public static final String ADMIN_ROLE = "ADMIN";
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(nullable = false, unique = true)

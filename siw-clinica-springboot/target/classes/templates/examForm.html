@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/baseadmin.html :: headerfiles(title='Progetto Clinica')"> </head>
+
+<body id="top">
+	<header th:replace="fragments/baseadmin.html :: intestazione"></header>
+	
+<div class="wrapper row3">
+ <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ############################################################################################# -->
+    <section class="group">
+      
+     <div class="one_half first btmspace-50">
+     <article>
+		<div>
+			<h6 class="heading" th:text="#{header.esameSingolo}">Dati Opera</h6>
+		</div>
+
+	<form th:action="@{exam}" method="POST" th:object="${exam}" enctype="multipart/form-data">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+
+	<table>
+    	<tr> 
+    	 <td>				
+			<h6 class="heading"><span>Data Esame:<input type="date" th:field="*{dateExamination}" required/></span></h6>
+			<h6 class="heading"><span th:if="${#fields.hasErrors('dateExamination')}" th:errors="*{dateExamination}"></span></h6>
+        </td>
+        <td>	
+        	<h6 class="heading"><span>
+			<label>Tipo Esame: </label> <select id="typeOfExamination" th:field="*{typeOfExamination}" required>
+			<option th:each="typeOfExamination : ${typeOfExaminations}"
+						th:value="${typeOfExamination.id}" th:text="${typeOfExamination.name}"></option>
+			</select>
+			</span></h6>
+        			
+			
+        </td>
+         
+    	</tr>   
+    	<tr>
+        <td>				
+			<h6 class="heading"><span>
+			<label>Paziente: </label> <select id="patient" th:field="*{patient}" required>
+			<option th:each="patient : ${patients}"
+						th:value="${patient.id}" th:text="${patient.nome + ' ' + patient.cognome}"></option>
+			</select>
+			</span></h6>
+        </td>
+        <td>				
+			<h6 class="heading"><span>
+			<label>Medico: </label> <select id="doctor" th:field="*{doctor}" required>
+			<option th:each="doctor : ${doctors}"
+						th:value="${doctor.id}" th:text="${doctor.name}"></option>
+			</select>
+			</span></h6>
+        </td>
+         
+    	</tr>  
+    			
+	</table>
+	<div>
+		<h6 class="heading"><span><button type="submit">Invio</button></span></h6>
+	</div>
+		
+	</form>
+	
+	</article>
+	
+	
+	</div>
+	  
+     </section>
+    <!-- ############################################################################################# -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+	<footer th:replace="fragments/baseadmin.html :: fondo"></footer>
+</body>
+</html>

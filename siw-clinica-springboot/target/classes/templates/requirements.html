@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/baseadmin.html :: headerfiles(title='Progetto Clinica')">
+	 </head>
+
+<body id="top">
+	<div th:if="${role}=='ADMIN'">
+		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
+	</div>
+	<div th:unless="${role}=='ADMIN'">
+		<header th:replace="fragments/base.html :: intestazione"></header>
+	</div>
+	
+	
+<div class="bgded overlay" style="background-image:url('images/backgrounds/01.png');">
+   <figure class="hoc container clear imgroup"> 
+    <!-- ################################################################################################ -->
+    <figcaption class="sectiontitle">
+      <p class="heading underline font-x2" th:text="#{header.requirement}">Elenco requisiti</p>
+    </figcaption>
+    <ul class="nospace group">
+    
+    <th:block th:each="requirement : ${requirements}">
+    
+    <li class="one_third">
+	<a  href="requirement.html" th:href="@{'/requirement' + '/' + ${requirement.id}}" >
+	
+	
+	<em th:text="|${requirement.id} |">Requisiti</em></a>
+	</li>
+    </th:block>
+      </ul>
+   
+  </figure> 
+  <!-- ################################################################################################ -->
+  
+</div>	
+
+	<footer th:replace="fragments/baseadmin.html :: fondo"></footer>
+</body>
+</html>

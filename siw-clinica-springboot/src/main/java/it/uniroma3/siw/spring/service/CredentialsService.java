@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.spring.model.Credentials;
+import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.repository.CredentialsRepository;
 
 @Service
@@ -45,4 +46,15 @@ public class CredentialsService {
     	Credentials credentials = this.getCredentials(userDetails.getUsername());
     	return credentials.getRole();
     }
+    @Transactional
+	public Optional<Credentials> findByUsername(String username) {
+		return this.credentialsRepository.findByUsername(username);
+		
+	}
+
+	 @Transactional
+	public Optional<Credentials> findByUser(User user) {
+		return this.credentialsRepository.findByUser(user);
+		
+	}
 }

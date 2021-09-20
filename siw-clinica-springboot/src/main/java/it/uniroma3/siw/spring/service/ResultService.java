@@ -1,10 +1,13 @@
 package it.uniroma3.siw.spring.service;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import it.uniroma3.siw.spring.model.Exam;
 import it.uniroma3.siw.spring.model.Result;
 import it.uniroma3.siw.spring.repository.ResultRepository;
 
@@ -37,5 +40,15 @@ public class ResultService {
 	@Transactional
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
+	}
+
+	@Transactional
+	public Optional<Result> resultById(Long id) {
+		return resultRepository.findById(id);
+	}
+
+	@Transactional
+	public Optional<Result> resultByExam(Exam exam) {
+		return resultRepository.findByExam(exam);
 	}
 }

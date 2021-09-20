@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments/baseadmin.html :: headerfiles(title='Progetto Clinica')"> </head>
+
+<body id="top">
+	<header th:replace="fragments/baseadmin.html :: intestazione"></header>
+	
+<div class="wrapper row3">
+ <main class="hoc container clear"> 
+    <!-- main body -->
+    <!-- ############################################################################################# -->
+    <section class="group">
+      
+      <div class="one_half first">
+      <div class="containerLogin">
+		<div>
+			<h6 class="heading" th:text="#{header.typeOfExamination}">Dati Tipologia Esame</h6>
+		</div>
+			
+	<form th:action="@{/admin/typeOfExamination}" method="POST" th:object="${typeOfExamination}" >
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+	<table>
+    	<tr>
+        <td>
+        	<h6 class="heading"><span>Nome:<input type="text" th:field="*{name}" id="typeOfExamination" th:placeholder="${typeOfExamination.name}" required /></span></h6>
+			<h6 class="heading"><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></h6>
+        </td>
+        <td>
+        	<h6 class="heading"><span>Descrizione:<input type="text" th:field="*{description}" id="typeOfExamination" th:placeholder="${typeOfExamination.description}" required/></span></h6>
+			<h6 class="heading"><span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span></h6>
+        </td>
+     
+    	</tr>
+    	   	<tr>
+        <td>
+				<h6 class="heading"><span>Costo:<input type="text" th:field="*{cost}" id="typeOfExamination" th:placeholder="${typeOfExamination.cost}" required/></span></h6>
+				<h6 class="heading"><span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span></h6>      
+				  </td>
+        
+				
+       
+				
+    	</tr>    		
+	</table>
+	<div>
+
+					
+
+				</div>
+			<div>
+				<h6 class="heading"><span><button type="submit">Invio</button></span></h6>
+			</div>
+		
+	</form>
+	</div>
+	  <div>
+	  </div>
+      </div>
+ 
+      
+ 
+
+    </section>
+    <!-- ############################################################################################# -->
+    <!-- / main body -->
+    <div class="clear"></div>
+  </main>
+</div>
+	<footer th:replace="fragments/baseadmin.html :: fondo"></footer>
+</body>
+</html>

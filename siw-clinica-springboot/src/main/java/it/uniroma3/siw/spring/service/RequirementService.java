@@ -1,6 +1,7 @@
 package it.uniroma3.siw.spring.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Requirement;
+import it.uniroma3.siw.spring.model.TypeOfExamination;
 import it.uniroma3.siw.spring.repository.RequirementRepository;
 
 @Service
@@ -17,14 +19,15 @@ public class RequirementService {
 	private RequirementRepository requirementRepository;
 	@Autowired
 	private CredentialsService credentialsService;
-
+	@Autowired
+	private TypeOfExaminationService typeOfExaminationService;
 	@Transactional
 	public Requirement insert(Requirement requirement) {
 		return requirementRepository.save(requirement);
 	}
 
 	@Transactional
-	public List<Requirement> allRequirement() {
+	public List<Requirement> allRequirements() {
 		return (List<Requirement>) requirementRepository.findAll();
 	}
 
@@ -39,5 +42,18 @@ public class RequirementService {
 	@Transactional
 	public CredentialsService getCredentialsService() {
 		return credentialsService;
+	}
+	@Transactional
+	public TypeOfExaminationService getTypeOfExaminationService() {
+		return typeOfExaminationService;
+	}
+	@Transactional
+	public Optional<Requirement> requirementById(Long id) {
+		return requirementRepository.findById(id);
+	}
+
+	@Transactional
+	public Optional<Requirement> requirementByTypeOfExamination(TypeOfExamination typeOfExamination) {
+		return requirementRepository.findByTypeOfExamination(typeOfExamination);
 	}
 }

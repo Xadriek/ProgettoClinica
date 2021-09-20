@@ -18,6 +18,8 @@ public class TypeOfExaminationService {
 	private TypeOfExaminationRepository typeOfExaminationRepository;
 	@Autowired
 	private CredentialsService credentialsService;
+	@Autowired
+	private RequirementService requirementService;
 	
 	@Transactional
 	public TypeOfExamination insert(TypeOfExamination typeOfExamination) {
@@ -50,4 +52,8 @@ public class TypeOfExaminationService {
 			else 
 				return null;
 		}
+
+	public RequirementService getRequirementService() {
+		return this.requirementService;
+	}
 }

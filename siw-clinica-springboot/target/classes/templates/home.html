@@ -1,18 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments/base.html :: headerfiles(title='SIW')"> </head>
-<body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
-    <div>
-    	<h4 th:text="#{header.menuUtente}">Menu</h4>
-		<div>
-			<a href="prodotto" th:href="@{/prodotto}">Elenco prodotti</a>
-   		</div>
-   		<div>
-			<a th:href="@{/logout}">Logout</a>
-   		</div>
-   		
-    </div>
-    <footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
+<head
+	th:replace="fragments/baseadmin.html :: headerfiles(title='Progetto Clinica')">
+</head>
+
+<body id="top">
+	
+<div th:if="${role}=='ADMIN'">
+		<header th:replace="fragments/baseadmin.html :: intestazione"></header>
+	</div>
+	<div th:unless="${role}=='ADMIN'">
+		<header th:replace="fragments/base.html :: intestazione"></header>
+	</div>
+	
+
+	<!-- Gallery Photo ################################################################################### -->
+
+	<section class="group">
+		<div class="bgded overlay"
+			style="background-image: url('images/backgrounds/01.png');">
+			<figure class="hoc container clear imgroup">
+				<!-- ################################################################################################ -->
+				<figcaption class="sectiontitle">
+					<p class="nospace font-xs">
+						Benvenuto <a sec:authentication="name"> </a>
+					</p>
+
+
+
+				</figcaption>
+				<div>
+					<ul class="nospace group">
+      <li class="one_third"><a class="imgover" th:href="@{/exam/patient}"><img src="images/pic2.png" alt=""></a>Miei Esami</li>
+      <li class="one_third"><a class="imgover" th:href="@{/doctor}"><img src="images/pic3.png" alt=""></a>Medici</li>
+      <li class="one_third"><a class="imgover" th:href="@{/typeOfExamination}"><img src="images/pic4.png" alt=""></a>Tipologie</li>
+      <li class="one_third"><a class="imgover" th:href="@{/chisiamo}"><img src="images/pic5.png" alt=""></a>Chi Siamo</li>
+      <li class="one_third"><a class="imgover" th:href="@{/contattaci}"><img src="images/pic6.png" alt=""></a>Contattaci</li>
+      <li class="one_third"><a class="imgover" th:href="@{/logout}"><img src="images/pic1.png" alt="">Logout</a></li>
+    </ul>
+
+				</div>
+		</div>
+		
+		<!-- ################################################################################################ -->
+		</figure>
+		<!-- ############################################################################################### -->
+		</div>
+	</section>
+
+	<footer th:replace="fragments/base.html :: fondo(home='/default')"></footer>
 </body>
 </html>
+
+
