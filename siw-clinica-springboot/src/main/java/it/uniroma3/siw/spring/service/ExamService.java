@@ -72,19 +72,19 @@ public class ExamService {
 			else 
 				return false;
 		}
-		@Transactional
+		
 		public UserService getUserService() {
 			return this.userService;
 		}
-		@Transactional
+		
 		public DoctorService getDoctorService() {
 			return this.doctorService;
 		}
-		@Transactional
+		
 		public TypeOfExaminationService getTypeOfExaminationService() {
 			return this.typeOfExaminationService;
 		}
-		@Transactional
+		
 		public CredentialsService getCredentialsService() {
 			return credentialsService;
 		}

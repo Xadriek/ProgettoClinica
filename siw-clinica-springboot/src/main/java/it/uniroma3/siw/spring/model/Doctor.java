@@ -2,7 +2,7 @@ package it.uniroma3.siw.spring.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.Data;
 
@@ -27,7 +30,8 @@ public class Doctor {
 	@Column(nullable=false)
 	private String specialization;
 	
-	@OneToMany(mappedBy="doctor",cascade= {CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(mappedBy="doctor")
+	@LazyCollection( LazyCollectionOption.TRUE )
 	private List<Exam> exam;
 	
 	 @Column(nullable = true, length = 64)
@@ -39,4 +43,12 @@ public class Doctor {
 	         
 	        return "/doctor-photos/" + id + "/" + photos;
 	    }
+
+	@Override
+	public String toString() {
+		return "Doctor [id=" + id + ", name=" + name + ", surname=" + surname + ", specialization=" + specialization
+				+ ", photos=" + photos + "]";
+	}
+	 
+	 
 }

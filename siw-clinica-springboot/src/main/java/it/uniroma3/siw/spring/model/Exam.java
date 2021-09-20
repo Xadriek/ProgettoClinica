@@ -11,11 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "exams")
 public class Exam {
 	
 	@Id
@@ -28,28 +30,14 @@ public class Exam {
 	
 	@OneToMany(mappedBy="exam",cascade=CascadeType.ALL)
 	private List<Result> result;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private User patient;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private Doctor doctor;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	private TypeOfExamination typeOfExamination;
 	
-	public Exam(Long id, LocalDate dateOfPrenotation, String dateExamination, List<Result> result, User patient,
-			Doctor doctor, TypeOfExamination typeOfExamination) {
-		super();
-		this.id = id;
-		this.dateOfPrenotation = dateOfPrenotation;
-		this.dateExamination = dateExamination;
-		this.result = result;
-		this.patient = patient;
-		this.doctor = doctor;
-		this.typeOfExamination = typeOfExamination;
-	}
-
-	public Exam() {
-		super();
-	}
+	
 	
 	
 }

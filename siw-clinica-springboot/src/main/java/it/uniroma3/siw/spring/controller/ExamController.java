@@ -29,7 +29,7 @@ public class ExamController {
 	private ExamService examService;
 	
 
-	
+	//private final Logger logger = LoggerFactory.getLogger(this.getClass());	
 	
 
 
@@ -52,13 +52,7 @@ public class ExamController {
     	return "exam";
     }
 
-    @RequestMapping(value = "/admin/modExam/{id}", method = RequestMethod.GET)
-    public String modExam(@PathVariable("id") Long id, Model model) {
-    	model.addAttribute("exam", this.examService.examById(id));
-    	model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
-
-    	return "examFormMod";
-    }
+   
     @RequestMapping(value ="/admin/examUpdate")
     public String updateExam(@ModelAttribute("exam") Exam exam,
     		Model model, BindingResult bindingResult){
