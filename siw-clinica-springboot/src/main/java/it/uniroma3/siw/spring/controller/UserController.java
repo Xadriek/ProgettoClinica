@@ -18,6 +18,7 @@ public class UserController {
 	@RequestMapping(value = "/patient", method = RequestMethod.GET)
     public String getPatients(Model model) {
     		model.addAttribute("patients", this.userService.getAllUsers());
+    		model.addAttribute("role", this.userService.getCredentialsService().getRoleAuthenticated());
     		return "patients";
 }
 	@RequestMapping(value = "/patient/{id}", method = RequestMethod.GET)
