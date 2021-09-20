@@ -63,9 +63,16 @@ public class ResultController {
     	this.resultValidator.validate(result, bindingResult);
         if (!bindingResult.hasErrors()) {
         	this.resultService.insert(result);
-            model.addAttribute("results", this.resultService.allResult());
-            return "results";
+        	model.addAttribute("result", new Result());
+        	model.addAttribute("exams", this.examService.allExams());
+            return "resultForm";
         }
         return "resultForm";
+    }
+    @RequestMapping(value = "/exit", method = RequestMethod.GET)
+    public String getExams(Model model) {
+    		model.addAttribute("exams", this.examService.allExams());
+    		model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
+    		return "exams";
     }
 }
