@@ -100,19 +100,27 @@
   	</main>
 	</div>
 	
-	 <figure class="hoc container clear imgroup"> 
+	 <figure th:if="${role}=='ADMIN'" class="hoc container clear imgroup"> 
 	   <figcaption class="sectiontitle">
-      <p class="heading underline font-x2" >Esami</p>
+      <p class="heading underline font-x2" >Esami svolti</p>
     </figcaption>
-              <table>
+              <table th:if="${role}=='ADMIN'">
                 <tr>
-                    <th>Nome </th>
-                    <th>Valore</th>
+                    <th>Tipologia </th>
+                    <th>Paziente</th>
+                    <th>Data prenotazione</th>
+                    <th>Data esame</th>
                 </tr>
                 <tr th:each="exam : ${doctor.exam}">
-                    <td th:text="${exam.id}">ID </td>
+                    <td th:text="${exam.typeOfExamination.name}">ID </td>
                     <td><a href="exam.html" th:href="@{'/exam' + '/' + ${exam.id}}" >
-	<em th:text="|${exam.dateOfPrenotation} ${exam.dateExamination}|">Esami</em> </a></td>
+	<em th:text="|${exam.patient.cognome} ${exam.patient.nome}|">Esami</em> </a></td>
+	<td>
+		<em th:text=" ${exam.dateOfPrenotation} ">Data Prenotazione</em>
+	</td>
+	<td>
+		<em th:text=" ${exam.dateExamination} ">Data Esame</em>
+	</td>
                 </tr>
         </table>
    

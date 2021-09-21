@@ -23,12 +23,16 @@
           <table>
                 <tr>
                     <th>Codice</th>
+                    <th>Cognome</th>
                     <th>Nome</th>
+                    <th>Specializzazione</th>
                 </tr>
                 <tr th:each="doctor : ${doctors}">
                     <td th:text="${doctor.id}">ID </td>
                     <td><a   th:href="@{'/doctor' + '/' + ${doctor.id}}" >
-	<em th:text="|${doctor.id} ${doctor.name} ${doctor.surname} ${doctor.specialization}|">Medici</em> </a></td>
+	<em th:text="${doctor.surname}">Surname</em> </a></td>
+                 <td th:text="${doctor.name}">Name </td>
+                  <td th:text="${doctor.specialization}">Specializzazion </td>
                 </tr>
         </table>
   </figure> 

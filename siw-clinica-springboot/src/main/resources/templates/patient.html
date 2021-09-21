@@ -94,13 +94,21 @@
     </figcaption>
               <table>
                 <tr>
-                    <th>Nome </th>
-                    <th>Valore</th>
+                	<th>Codice identificativo</th>
+                	<th>Tipologia</th>
+                    <th>Data prenotazione</th>
+                    <th>Data esame</th>
+                    <th>Medico</th>
+
                 </tr>
                 <tr th:each="exam : ${patient.exam}">
                     <td th:text="${exam.id}">ID </td>
-                    <td><a href="exam.html" th:href="@{'/exam' + '/' + ${exam.id}}" >
-	<em th:text="|${exam.dateOfPrenotation} ${exam.dateExamination}|">Esami</em> </a></td>
+                    <td><a   th:href="@{'/exam' + '/' + ${exam.id}}" >
+	<em th:text="${exam.typeOfExamination.name} ">Esame</em> </a></td>
+	<td th:text="${exam.DateOfPrenotation}">ID </td>
+	<td th:text="${exam.DateExamination}">ID </td>
+	<td th:text="|${exam.doctor.surname} ${exam.doctor.name}|">ID </td>
+
                 </tr>
         </table>
    

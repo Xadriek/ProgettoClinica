@@ -23,13 +23,15 @@
     
               <table>
                 <tr>
-                    <th>Codice</th>
-                    <th>Paziente</th>
+                    <th>Identificativo</th>
+                    <th>Cognome</th>
+                    <th>Nome</th>
                 </tr>
                 <tr th:each="patient : ${patients}">
                     <td th:text="${patient.id}">ID </td>
-                    <td><a   th:href="@{'/patient' + '/' + ${patient.id}}" >
-	<em th:text="| ${patient.nome} ${patient.cognome} |">Paziente</em> </a></td>
+                    <td><a   th:href="@{'/admin/patient' + '/' + ${patient.id}}" >
+	<em th:text="${patient.cognome}">Cognome</em> </a></td>
+                <td th:text="${patient.nome}">Nome </td>
                 </tr>
         </table>
    

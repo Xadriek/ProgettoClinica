@@ -20,14 +20,15 @@
     <table>
    	
                 <tr>
-                    <th>Identificatore</th>
+                    
                     <th>Name</th>
                     <th>Description</th>
                     <th>Cost</th>
                 </tr>
                 <tr th:each="typeOfExamination : ${typeOfExaminations}">
-                    <td th:text="${typeOfExamination.id}">ID </td>
-                    <td th:text="${typeOfExamination.name}">name</td>
+                    <td><a  href="typeOfExaminationFree.html" th:href="@{'/typeOfExaminationFree' + '/' + ${typeOfExamination.id}}" >
+						<em th:text="${typeOfExamination.name}">typeOfExamination</em> </a></td>
+               
                     <td th:text="${typeOfExamination.description}">description</td>
             		<td th:text="${typeOfExamination.cost}">cost</td>
                 </tr>

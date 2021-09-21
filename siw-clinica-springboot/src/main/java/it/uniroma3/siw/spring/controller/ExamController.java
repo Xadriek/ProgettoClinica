@@ -26,8 +26,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lowagie.text.DocumentException;
 
+import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.model.Exam;
-
+import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.ExamService;
 import it.uniroma3.siw.upload.ExamPDFExporter;
 
@@ -56,10 +57,16 @@ public class ExamController {
 
     @RequestMapping(value = "/exam/{id}", method = RequestMethod.GET)
     public String getExam(@PathVariable("id") Long id, Model model) {
-    	model.addAttribute("exam", this.examService.examById(id));
+    	Exam exam= this.examService.examById(id);
+    	User user=this.examService.getCredentialsService().getUserAuthenticated();
+    	String role=this.examService.getCredentialsService().getRoleAuthenticated();
+    	if(user==exam.getPatient() || role.equals("ADMIN")) {
+    	model.addAttribute("exam", exam);
     	model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
 
-    	return "exam";
+    	return "exam";}
+    	else
+    		return "exams";
     }
 
    
@@ -72,13 +79,13 @@ public class ExamController {
     	
 
 }
-    @RequestMapping(value = "/exam", method = RequestMethod.GET)
+    @RequestMapping(value = "admin/exams", method = RequestMethod.GET)
     public String getExams(Model model) {
     		model.addAttribute("exams", this.examService.allExams());
     		model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
     		return "exams";
     }
-    @RequestMapping(value = "/exam/patient", method = RequestMethod.GET)
+    @RequestMapping(value = "/exams/patient", method = RequestMethod.GET)
     public String getExamsByPatient(Model model) {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     		model.addAttribute("exams", this.examService.examByPatient(this.examService.getUserService().getUserByUsername(userDetails.getUsername())));

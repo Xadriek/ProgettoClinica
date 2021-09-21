@@ -21,13 +21,16 @@
     
               <table>
                 <tr>
-                    <th>Codice</th>
-                    <th>Tipologia</th>
+                     <th>Name</th>
+                    <th>Description</th>
+                    <th>Cost</th>
                 </tr>
                 <tr th:each="typeOfExamination : ${typeOfExaminations}">
-                    <td th:text="${typeOfExamination.id}">ID </td>
                     <td><a  href="typeOfExamination.html" th:href="@{'/typeOfExamination' + '/' + ${typeOfExamination.id}}" >
-	<em th:text="| ${typeOfExamination.name} ${typeOfExamination.description} ${typeOfExamination.cost}|">typeOfExamination</em> </a></td>
+						<em th:text="${typeOfExamination.name}">typeOfExamination</em> </a></td>
+               
+                    <td th:text="${typeOfExamination.description}">description</td>
+            		<td th:text="${typeOfExamination.cost}">cost</td>
                 </tr>
         </table>
    
