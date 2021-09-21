@@ -11,27 +11,30 @@
 		<header th:replace="fragments/base.html :: intestazione"></header>
 	</div>
 	
-	
+
 <div class="bgded overlay" style="background-image:url('images/backgrounds/01.png');">
    <figure class="hoc container clear imgroup"> 
     <!-- ################################################################################################ -->
     <figcaption class="sectiontitle">
       <p class="heading underline font-x2" th:text="#{header.typeOfExamination}">Elenco Tipologia</p>
     </figcaption>
-    <ul class="nospace group">
     
-    <th:block th:each="typeOfExamination : ${typeOfExaminations}">
-    
-    <li class="one_third">
-	<a  href="typeOfExamination.html" th:href="@{'/typeOfExamination' + '/' + ${typeOfExamination.id}}" >
-	
-	
-	<em th:text="|${typeOfExamination.id} |">Tipologia</em></a>
-	</li>
-    </th:block>
-      </ul>
+              <table>
+                <tr>
+                    <th>Codice</th>
+                    <th>Tipologia</th>
+                </tr>
+                <tr th:each="typeOfExamination : ${typeOfExaminations}">
+                    <td th:text="${typeOfExamination.id}">ID </td>
+                    <td><a  href="typeOfExamination.html" th:href="@{'/typeOfExamination' + '/' + ${typeOfExamination.id}}" >
+	<em th:text="| ${typeOfExamination.name} ${typeOfExamination.description} ${typeOfExamination.cost}|">typeOfExamination</em> </a></td>
+                </tr>
+        </table>
    
   </figure> 
+
+
+
   <!-- ################################################################################################ -->
   
 </div>	

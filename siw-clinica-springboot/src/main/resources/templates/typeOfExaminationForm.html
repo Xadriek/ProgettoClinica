@@ -24,7 +24,7 @@
 	<table>
     	<tr>
         <td>
-        	<h6 class="heading"><span>Nome:<input type="text" th:field="*{name}" id="typeOfExamination" th:placeholder="${typeOfExamination.name}" required /></span></h6>
+        	<h6 class="heading"><span>Tipologia:<input type="text" th:field="*{name}" id="typeOfExamination" th:placeholder="${typeOfExamination.name}" required /></span></h6>
 			<h6 class="heading"><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></h6>
         </td>
         <td>
@@ -39,7 +39,9 @@
 				<h6 class="heading"><span th:if="${#fields.hasErrors('cost')}" th:errors="*{cost}"></span></h6>      
 				  </td>
         
-				
+			 <td>
+				<span></span>  
+				  </td>	
        
 				
     	</tr>    		

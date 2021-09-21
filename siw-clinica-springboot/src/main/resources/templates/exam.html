@@ -24,20 +24,62 @@
 						<article>
 							<h6 class="heading" th:text="#{header.esameSingolo}">Esame</h6>
 							<div th:if="${exam}" th:object="${exam}">
-							<h5 class="heading" >Data Prenotazione:</h5>
-								<h6 class="heading" th:text="*{dateOfPrenotation}">qui-va-data-prenotazione</h6>
-								<h5 class="heading" >Data Esame:</h5>
-								<h6 class="nospace" th:text="*{dateExamination}">qui-va-data-esame</h6>
-								<p>                                                         </p>
-								<h5 class="heading" >Tipo Esame:</h5>
-								<h6 class="heading" th:text="*{ typeOfExamination}">qui-va- typeOfExamination</h6>
+							<table >
+								<tr>
+									<td>
+										<h6 class="heading">
+										
+											<span>Data Prenotazione:</span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span>Data Esame:</span>
+										</h6>
+										
+									</td>
+
+								</tr>
+								
+								<tr>
+									<td>
+										<h6 class="heading">
+										
+											<span><h6 class="heading" th:text="*{dateOfPrenotation}">qui-va-data-prenotazione</h6></span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span><h6 class="nospace" th:text="*{dateExamination}">qui-va-data-esame</h6></span>
+										</h6>
+										
+									</td>
+
+								</tr>
+								
+								
+								<tr>
+									<td>
+										<h6 class="heading">
+										
+											<span><a class="btn" th:href="@{'/exam/export/pdf' + '/' + ${exam.id}}">Export to PDF</a></span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span><a class="btn" th:href="@{'/admin/result'}">Inserimento Risultato</a>	</span>
+										</h6>
+									</td>
+								</tr>
+							</table>	
 							</div>
 							<p class="nospace"></p>
 							<div th:unless="${exam}">Non esiste</div>
 							<div>
-							<a class="btn" th:href="@{'/exam/export/pdf' + '/' + ${exam.id}}">Export to PDF</a>
 							</div>
-							
 						</article>
           			</li>
         	</ul>
@@ -48,5 +90,24 @@
     <div class="clear"></div>
   	</main>
 	</div>
+	
+	  <figure class="hoc container clear imgroup"> 
+    <!-- ################################################################################################ -->
+    <figcaption class="sectiontitle">
+      <p class="heading underline font-x2" >Risultati</p>
+    </figcaption>
+              <table>
+                <tr>
+                    <th>Nome </th>
+                    <th>Valore</th>
+                </tr>
+                <tr th:each="result : ${exam.result}">
+                    <td th:text="${result.id}">ID </td>
+                    <td><a href="result.html" th:href="@{'/result' + '/' + ${result.id}}" >
+	<em th:text="|${result.name} ${result.value}|">risultato</em> </a></td>
+                </tr>
+        </table>
+   
+  </figure> 
 </body>
 </html>

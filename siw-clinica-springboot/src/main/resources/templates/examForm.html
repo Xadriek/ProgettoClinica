@@ -22,7 +22,7 @@
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
 
-	<table>
+	<table width="400">
     	<tr> 
     	 <td>				
 			<h6 class="heading"><span>Data Esame:<input type="date" th:field="*{dateExamination}" required/></span></h6>
@@ -53,7 +53,7 @@
 			<h6 class="heading"><span>
 			<label>Medico: </label> <select id="doctor" th:field="*{doctor}" required>
 			<option th:each="doctor : ${doctors}"
-						th:value="${doctor.id}" th:text="${doctor.name}"></option>
+						th:value="${doctor.id}" th:text="| ${doctor.surname} ${doctor.name} |"></option>
 			</select>
 			</span></h6>
         </td>

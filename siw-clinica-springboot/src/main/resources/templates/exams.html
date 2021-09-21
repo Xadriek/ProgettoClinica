@@ -18,18 +18,18 @@
     <figcaption class="sectiontitle">
       <p class="heading underline font-x2" th:text="#{header.esami}">Elenco Esami</p>
     </figcaption>
-    <ul class="nospace group">
     
-    <th:block th:each="exam : ${exams}">
-    
-    <li class="one_third">
-	<a  href="exam.html" th:href="@{'/exam' + '/' + ${exam.id}}" >
-	
-	
-	<em th:text="|${exam.id} |">esame</em></a>
-	</li>
-    </th:block>
-      </ul>
+              <table>
+                <tr>
+                    <th>Codice</th>
+                    <th>Esame</th>
+                </tr>
+                <tr th:each="exam : ${exams}">
+                    <td th:text="${exam.id}">ID </td>
+                    <td><a   th:href="@{'/exam' + '/' + ${exam.id}}" >
+	<em th:text="| ${exam.dateOfPrenotation} ${exam.dateExamination} |">Esame</em> </a></td>
+                </tr>
+        </table>
    
   </figure> 
   <!-- ################################################################################################ -->
