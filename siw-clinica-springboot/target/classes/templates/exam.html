@@ -22,67 +22,43 @@
 					<ul class="nospace group inspace-15">
 						<li class="one_half first btmspace-50">
 							<article>
-								<h6 class="heading" th:text="#{header.esameSingolo}">Esame</h6>
+								<p class="heading underline font-x2"  th:text="#{header.esameSingolo}">Esame</p>
+								
 								<div th:if="${exam}" th:object="${exam}">
-									<table>
-										<tr>
-											<td>
-												<h6 class="heading">
-
-													<span>Data Prenotazione:</span>
-												</h6>
-
-											</td>
-											<td>
-												<h6 class="heading">
-													<span>Data Esame:</span>
-												</h6>
-
-											</td>
-
-										</tr>
-
-										<tr>
-											<td>
-												<h6 class="heading">
-
-													<span><h6 class="heading"
-															th:text="*{dateOfPrenotation}">qui-va-data-prenotazione</h6></span>
-												</h6>
-
-											</td>
-											<td>
-												<h6 class="heading">
-													<span><h6 class="nospace"
-															th:text="*{dateExamination}">qui-va-data-esame</h6></span>
-												</h6>
-
-											</td>
-
-										</tr>
-
-
-										<tr>
-											<td>
-												<h6 class="heading">
-
-													<span><a class="btn"
+								<table>
+          							<thead>
+            							<tr>
+              							<th>Data Prenotazione:</th>
+              							<th>Data Esame:</th>
+              							
+            							</tr>
+          							</thead>
+          							<tbody>
+            						<tr>
+              						<td th:text="*{dateOfPrenotation}">qui-va-data-prenotazione</td>
+              						<td th:text="*{dateExamination}">qui-va-data-esame></td>
+              						
+            						</tr>
+            						<tr>
+              						<td></td>
+              						<td></td>
+              						
+            						</tr>
+            						<tr>
+              						<td><a class="btn"
 														th:href="@{'/exam/export/pdf' + '/' + ${exam.id}}">Export
-															to PDF</a></span>
-												</h6>
-
-											</td>
-											<td>
-												<h6 class="heading" th:if="${role}=='ADMIN'">
+															to PDF</a></td>
+              						<td th:if="${role}=='ADMIN'">
 													<span><a class="btn" th:href="@{'/admin/result' + '/' + ${exam.id}}">Inserimento
-															Risultato</a> </span>
+															Risultato</a> </span></td>
+              						
+            						</tr>
+            						
+          							</tbody>
+        							</table>
+								
+								
 
-
-
-												</h6>
-											</td>
-										</tr>
-									</table>
 								</div>
 								<p class="nospace"></p>
 								<div th:unless="${exam}">Non esiste</div>
