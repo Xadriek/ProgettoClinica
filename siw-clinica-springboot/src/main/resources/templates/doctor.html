@@ -21,17 +21,62 @@
 				<div class="one_half">
 				<ul class="nospace group inspace-15">
 					<li class="one_half first btmspace-50">
-						<article>
+					
+					
+										<article>
 							<h6 class="heading" th:text="#{header.doctorSingolo}">Medico</h6>
 							<div th:if="${doctor}" th:object="${doctor}">
-							<h5 class="heading" >Nome:</h5>
-								<h6 class="heading" th:text="*{name}">qui-va-data-name</h6>
-								<h5 class="heading" >Cognome:</h5>
-								<h6 class="nospace" th:text="*{surname}">qui-va-surname</h6>
-								<p>                                                         </p>
-								<h5 class="heading" >Specializzazione:</h5>
-								<h6 class="heading" th:text="*{ specialization}">qui-va-specialization</h6>
+							<table >
+								<tr>
+									<td>
+										<h6 class="heading">
+										
+											<span>Nome:</span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span>Cognome:</span>
+										</h6>
+										
+									</td>
+									
+									<td>
+										<h6 class="heading">
+											<span>Specializzazione:</span>
+										</h6>
+										
+									</td>
+
+								</tr>
 								
+								<tr>
+									<td>
+										<h6 class="heading">
+										
+											<span><h6 class="heading" th:text="*{name}">qui-va-data-name</h6></span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span><h6 class="nospace" th:text="*{surname}">qui-va-surname</h6></span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span><h6 class="nospace" th:text="*{specialization}">qui-va-specialization</h6></span>
+										</h6>
+										
+									</td>
+
+								</tr>
+								
+								
+								
+							</table>	
 							</div>
 							<p class="nospace"></p>
 							<div th:unless="${doctor}">Non esiste</div>
@@ -41,7 +86,10 @@
 								<a class="btn" th:href="@{'/admin/doctor' + '/' + ${doctor.id}}">elimina</a>
 								</footer>
 							</div>
-						</article>
+						</article>			
+					
+					
+					
           			</li>
         	</ul>
       </div>					
@@ -51,5 +99,32 @@
     <div class="clear"></div>
   	</main>
 	</div>
+	
+	 <figure th:if="${role}=='ADMIN'" class="hoc container clear imgroup"> 
+	   <figcaption class="sectiontitle">
+      <p class="heading underline font-x2" >Esami svolti</p>
+    </figcaption>
+              <table th:if="${role}=='ADMIN'">
+                <tr>
+                    <th>Tipologia </th>
+                    <th>Paziente</th>
+                    <th>Data prenotazione</th>
+                    <th>Data esame</th>
+                </tr>
+                <tr th:each="exam : ${doctor.exam}">
+                    <td th:text="${exam.typeOfExamination.name}">ID </td>
+                    <td><a href="exam.html" th:href="@{'/exam' + '/' + ${exam.id}}" >
+	<em th:text="|${exam.patient.cognome} ${exam.patient.nome}|">Esami</em> </a></td>
+	<td>
+		<em th:text=" ${exam.dateOfPrenotation} ">Data Prenotazione</em>
+	</td>
+	<td>
+		<em th:text=" ${exam.dateExamination} ">Data Esame</em>
+	</td>
+                </tr>
+        </table>
+   
+  </figure> 	
+	
 </body>
 </html>

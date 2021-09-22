@@ -13,25 +13,28 @@
 	
 	
 <div class="bgded overlay" style="background-image:url('images/backgrounds/01.png');">
-   <figure class="hoc container clear imgroup"> 
+  <figure class="hoc container clear imgroup"> 
     <!-- ################################################################################################ -->
     <figcaption class="sectiontitle">
-      <p class="heading underline font-x2" th:text="#{header.doctor}">Elenco Medici</p>
+      <p class="heading underline font-x2" th:text="#{header.doctorFree}">Elenco Medici</p>
     </figcaption>
-    <ul class="nospace group">
-    
-    <th:block th:each="doctor : ${doctors}">
-    
-    <li class="one_third">
-	<a    >
-	
-	
-	<em th:text="|${doctor.id} ${doctor.name} ${doctor.surname} ${doctor.specialization}|">Medici</em></a>
-	</li>
-    </th:block>
-      </ul>
-   
-  </figure> 
+      <table>
+   	
+                <tr>
+                    
+                    <th>Nome</th>
+                    <th>Cognome</th>
+                    <th>Specializzazione</th>
+                </tr>
+                <tr th:each="doctor : ${doctors}">
+                   
+                    <td th:text="${doctor.name}">name</td>
+                    <td th:text="${doctor.surname}">description</td>
+            		<td th:text="${doctor.specialization}">cost</td>
+                </tr>
+        
+        </table>
+</figure> 
   <!-- ################################################################################################ -->
   
 </div>	

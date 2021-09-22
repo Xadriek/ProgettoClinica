@@ -1,5 +1,8 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,15 @@ public class ResultController {
    @Autowired
     private ResultValidator resultValidator;
         
+    @RequestMapping(value="/admin/result/{id}", method = RequestMethod.GET)
+    public String addResult(@PathVariable("id") Long id,Model model) {
+    	Exam exam=this.examService.examById(id);
+    	List<Exam> exams=new ArrayList<>();
+    	exams.add(exam);
+    	model.addAttribute("result", new Result());
+    	model.addAttribute("exams", exams);
+        return "resultForm";
+    }
     @RequestMapping(value="/admin/result", method = RequestMethod.GET)
     public String addResult(Model model) {
     	model.addAttribute("result", new Result());
@@ -57,6 +69,7 @@ public class ResultController {
     		return "results";
     }
     
+    
     @RequestMapping(value = "/admin/result", method = RequestMethod.POST)
     public String addResult(@ModelAttribute("result") Result result, 
     									Model model, BindingResult bindingResult) {
@@ -69,6 +82,7 @@ public class ResultController {
         }
         return "resultForm";
     }
+    
     @RequestMapping(value = "/exit", method = RequestMethod.GET)
     public String getExams(Model model) {
     		model.addAttribute("exams", this.examService.allExams());

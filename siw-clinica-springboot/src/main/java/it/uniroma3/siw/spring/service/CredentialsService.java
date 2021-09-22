@@ -22,6 +22,7 @@ public class CredentialsService {
 	@Autowired
 	protected CredentialsRepository credentialsRepository;
 	
+	
 	@Transactional
 	public Credentials getCredentials(Long id) {
 		Optional<Credentials> result = this.credentialsRepository.findById(id);
@@ -45,6 +46,13 @@ public class CredentialsService {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = this.getCredentials(userDetails.getUsername());
     	return credentials.getRole();
+    }
+    
+    @Transactional
+    public User getUserAuthenticated() {
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = this.getCredentials(userDetails.getUsername());
+    	return credentials.getUser();
     }
     @Transactional
 	public Optional<Credentials> findByUsername(String username) {

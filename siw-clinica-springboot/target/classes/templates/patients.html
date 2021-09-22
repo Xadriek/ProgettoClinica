@@ -12,29 +12,37 @@
 	</div>
 	
 	
-	
-	
+
+
 <div class="bgded overlay" style="background-image:url('images/backgrounds/01.png');">
    <figure class="hoc container clear imgroup"> 
     <!-- ################################################################################################ -->
     <figcaption class="sectiontitle">
       <p class="heading underline font-x2" th:text="#{header.patient}">Elenco Pazienti</p>
     </figcaption>
-    <ul class="nospace group">
     
-    <th:block th:each="patient : ${patients}">
-    
-    <li class="one_third">
-	<a   th:href="@{'/patient' + '/' + ${patient.id}}" >
-	
-	
-	<em th:text="|${patient.id} ${patient.nome} ${patient.cognome}|">Paziente</em>
-	</a>
-	</li>
-    </th:block>
-      </ul>
+              <table>
+                <tr>
+                    <th>Identificativo</th>
+                    <th>Cognome</th>
+                    <th>Nome</th>
+                </tr>
+                <tr th:each="patient : ${patients}">
+                    <td th:text="${patient.id}">ID </td>
+                    <td><a   th:href="@{'/admin/patient' + '/' + ${patient.id}}" >
+	<em th:text="${patient.cognome}">Cognome</em> </a></td>
+                <td th:text="${patient.nome}">Nome </td>
+                </tr>
+        </table>
    
   </figure> 
+
+
+
+
+
+
+
   <!-- ################################################################################################ -->
   
 </div>	

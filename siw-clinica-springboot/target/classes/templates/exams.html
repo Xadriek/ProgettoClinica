@@ -18,18 +18,26 @@
     <figcaption class="sectiontitle">
       <p class="heading underline font-x2" th:text="#{header.esami}">Elenco Esami</p>
     </figcaption>
-    <ul class="nospace group">
     
-    <th:block th:each="exam : ${exams}">
-    
-    <li class="one_third">
-	<a  href="exam.html" th:href="@{'/exam' + '/' + ${exam.id}}" >
-	
-	
-	<em th:text="|${exam.id} |">esame</em></a>
-	</li>
-    </th:block>
-      </ul>
+              <table>
+                <tr>
+                	<th>Codice identificativo</th>
+                	<th>Tipologia</th>
+                    <th>Data prenotazione</th>
+                    <th>Data esame</th>
+                    <th>Medico</th>
+                    <th>Paziente</th>
+                </tr>
+                <tr th:each="exam : ${exams}">
+                    <td th:text="${exam.id}">ID </td>
+                    <td><a   th:href="@{'/exam' + '/' + ${exam.id}}" >
+	<em th:text="${exam.typeOfExamination.name} ">Esame</em> </a></td>
+	<td th:text="${exam.DateOfPrenotation}">ID </td>
+	<td th:text="${exam.DateExamination}">ID </td>
+	<td th:text="|${exam.doctor.surname} ${exam.doctor.name}|">ID </td>
+	<td th:text="|${exam.patient.cognome} ${exam.patient.nome}|">ID </td>
+                </tr>
+        </table>
    
   </figure> 
   <!-- ################################################################################################ -->

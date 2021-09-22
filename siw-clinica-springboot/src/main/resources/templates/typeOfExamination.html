@@ -14,6 +14,7 @@
 		<main class="hoc container clear">
 			<!-- main body -->
 			<!-- ############################################################################################# -->
+			
 			<section class="group">
 				<div class="one_half first">
 					
@@ -23,28 +24,95 @@
 					<li class="one_half first btmspace-50">
 						<article>
 							<h6 class="heading" th:text="#{header.typeOfExaminationSingolo}">Tipologia</h6>
+						
 							<div th:if="${typeOfExamination}" th:object="${typeOfExamination}">
-							<h5 class="heading" >Nome:</h5>
-								<h6 class="heading" th:text="*{name}">qui-va-data-nome</h6>
-								<h5 class="heading" >Descrizione:</h5>
-								<h6 class="nospace" th:text="*{description}">qui-va-description</h6>
-								<p>                                                         </p>
-								<h5 class="heading" >Costo:</h5>
-								<h6 class="heading" th:text="*{ cost}">qui-va-cost</h6>
+							
+							
+							<table >
+								<tr>
+									<td>
+										<h6 class="heading">
+										
+											<span>Nome:</span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span>Descrizione:</span>
+										</h6>
+										
+									</td>
+										<td>
+										<h6 class="heading">
+											<span>Costo:</span>
+										</h6>
+										
+									</td>
+
+								</tr>
 								
+								<tr>
+									<td>
+										<h6 class="heading">
+										
+											<span><h6 class="heading" th:text="*{name}">qui-va-data-nome</h6></span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span><h6 class="nospace" th:text="*{description}">qui-va-description</h6></span>
+										</h6>
+										
+									</td>
+									<td>
+										<h6 class="heading">
+											<span><h6 class="nospace" th:text="*{cost}">qui-va-cost</h6></span>
+										</h6>
+										
+									</td>
+								</tr>
+								
+
+							</table>	
 							</div>
 							<p class="nospace"></p>
 							<div th:unless="${typeOfExamination}">Non esiste</div>
-							
+							<div>
+							</div>
 						</article>
           			</li>
         	</ul>
       </div>					
- 	</section>
+ 	</section>			
+			
+
     <!-- ############################################################################################# -->
     <!-- / main body -->
     <div class="clear"></div>
   	</main>
 	</div>
+		  <figure class="hoc container clear imgroup"> 
+    <!-- ################################################################################################ -->
+    <figcaption class="sectiontitle">
+      <p class="heading underline font-x2" >Requisiti</p>
+    </figcaption>
+              <table>
+                <tr>
+                    <th>Nome </th>
+                    <th>Descrizione</th>
+                    
+                </tr>
+                <tr th:each="requirement : ${typeOfExamination.requirements}">
+                    <td th:text="${requirement.name}">ID </td>
+                    <td><a   >
+	<em th:text="${requirement.description}">Requisiti</em> </a></td>
+                </tr>
+        </table>
+   
+  </figure> 
+	
+	
 </body>
 </html>

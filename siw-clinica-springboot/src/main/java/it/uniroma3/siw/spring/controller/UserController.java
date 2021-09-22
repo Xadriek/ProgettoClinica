@@ -15,13 +15,13 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/patient", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/patient", method = RequestMethod.GET)
     public String getPatients(Model model) {
     		model.addAttribute("patients", this.userService.getAllUsers());
     		model.addAttribute("role", this.userService.getCredentialsService().getRoleAuthenticated());
     		return "patients";
 }
-	@RequestMapping(value = "/patient/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/patient/{id}", method = RequestMethod.GET)
     public String getExam(@PathVariable("id") Long id, Model model) {
 		
     	model.addAttribute("patient", this.userService.getUser(id));

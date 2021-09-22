@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import it.uniroma3.siw.spring.controller.validator.TypeOfExaminationValidator;
 import it.uniroma3.siw.spring.model.Requirement;
 import it.uniroma3.siw.spring.model.TypeOfExamination;
 import it.uniroma3.siw.spring.service.RequirementService;
@@ -23,8 +22,7 @@ public class TypeOfExaminationController {
 	@Autowired
 	private TypeOfExaminationService typeOfExaminationService;
 	
-    @Autowired
-    private TypeOfExaminationValidator typeOfExaminationValidator;
+
     
     @Autowired
 	private RequirementService requirementService;
@@ -44,6 +42,11 @@ public class TypeOfExaminationController {
     	model.addAttribute("role", this.typeOfExaminationService.getCredentialsService().getRoleAuthenticated());
     	return "typeOfExamination";
     }
+   @RequestMapping(value = "/typeOfExaminationFree/{id}", method = RequestMethod.GET)
+   public String getTypeOfExaminationFree(@PathVariable("id") Long id, Model model) {
+   	model.addAttribute("typeOfExamination", this.typeOfExaminationService.typeOfExaminationById(id));
+   	return "typeOfExaminationFree";
+   }
 
     @RequestMapping(value = "/typeOfExaminationFree", method = RequestMethod.GET)
     public String getTypeOfExaminationFree(Model model) {
