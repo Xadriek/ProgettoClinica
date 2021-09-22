@@ -15,9 +15,12 @@
       <div class="one_half first"><img class="inspace-15 borderedbox" src="images/pic0.png" alt=""></div>
       <div class="one_half">
       <div class="containerLogin">
-		<div>
-			<h6 class="heading" th:text="#{header.login}">Login</h6>
-		</div>
+		
+		 
+      <p class="nospace font-xs">Accesso al portale</p>
+      <p class="heading underline font-x2" th:text="#{header.login}">Login</p>
+   
+			
 		
 		<form th:action="@{/login}" method="POST">
 			<div>
@@ -41,6 +44,7 @@
 	  </div>
       </div>
     </section>
+     
     <!-- ############################################################################################# -->
     <!-- / main body -->
     <div class="clear"></div>

@@ -345,7 +345,7 @@ a:hover {
 }
 
 #slider li {
-   width: 1920px;  /* Width Image */
+   width: 5760px;  /* Width Image */
    height: 320px; /* Height Image */
    position: absolute;
    top: -325px; /* Original Position - Outside of the Slider */

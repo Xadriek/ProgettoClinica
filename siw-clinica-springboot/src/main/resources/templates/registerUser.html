@@ -15,9 +15,12 @@
       		<div class="one_half first"><img class="inspace-15 borderedbox" src="images/pic0.png" alt=""></div>
       		<div class="one_half">
 			<div class="containerLogin">
-				<div>
-					<h6 class="heading" th:text="#{header.registra}">Registrazione</h6>
-				</div>
+			
+			<p class="nospace font-xs">Registrazione al portale</p>
+      		<p class="heading underline font-x2" th:text="#{header.registra}">Registrazione</p>
+			
+			
+				
 				<form th:action="@{/register}" method="POST">
 				<div>
 					<div>
