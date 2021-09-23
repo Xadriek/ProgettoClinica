@@ -16,57 +16,67 @@
 		<main class="hoc container clear">
 			<!-- main body -->
 			<!-- ############################################################################################# -->
-			<section class="group">
-				<div class="one_half first"></div>
-				<div class="one_half">
-					<ul class="nospace group inspace-15">
-						<li class="one_half first btmspace-50">
-							<article>
-								<p class="heading underline font-x2"  th:text="#{header.esameSingolo}">Esame</p>
+			<p class="heading underline font-x2"  th:text="#{header.esameSingolo}">Esame</p>
 								
-								<div th:if="${exam}" th:object="${exam}">
-								<table>
-          							<thead>
-            							<tr>
-              							<th>Data Prenotazione:</th>
-              							<th>Data Esame:</th>
-              							
-            							</tr>
-          							</thead>
-          							<tbody>
-            						<tr>
-              						<td th:text="*{dateOfPrenotation}">qui-va-data-prenotazione</td>
-              						<td th:text="*{dateExamination}">qui-va-data-esame></td>
-              						
-            						</tr>
-            						<tr>
-              						<td></td>
-              						<td></td>
-              						
-            						</tr>
-            						<tr>
-              						<td><a class="btn"
-														th:href="@{'/exam/export/pdf' + '/' + ${exam.id}}">Export
-															to PDF</a></td>
+			<div th:if="${exam}" th:object="${exam}">
+			<section class="group">
+				<div class="one_half last">
+					
+				</div>
+				<table >
+				<tr>
+				<td>
+				<h5 class="heading" >IDENTIFICATIVO:</h5></td>
+				<td><h6 class="heading" th:text="*{id}">CODICE ESAME</h6></td>
+				</tr>
+				<tr>
+				<td>
+								<h5 class="heading" >TIPOLOGIA :</h5></td>
+								<td><h6 class="heading" th:text="*{typeOfExamination.name}">typeOfExamination</h6></td>
+								<tr>
+								<td><h5 class="heading" >PAZIENTE:</h5></td>
+								<td><h6 class="heading" th:text="|*{patient.nome} *{patient.cognome}|">patient</h6></td>
+								</tr>
+								<tr>
+								<td>
+								<h5 class="heading" >MEDICO:</h5></td>
+								<td><h6 class="heading" th:text="|*{doctor.name} *{doctor.surname}|">doctor</h6></td>
+								</tr>
+								<tr>
+								<td><h5 class="heading" >DATA PRENOTAZIONE:</h5></td>
+								<td><h6 class="heading" th:text="*{dateOfPrenotation}">dateOfPrenotation</h6></td>
+								</tr>
+								<tr>
+								<td><h5 class="heading" >DATA ESAME:</h5></td>
+								<td><h6 class="heading" th:text="*{dateExamination}">dateExamination</h6></td>
+								</tr>
+				</table>				
+							
+							
+								
+							</div>
+							
+							
+							<table >
+							<tr>
+							<td>
+            						<a class="btn"
+														th:href="@{'/exam/export/pdf' + '/' + ${exam.id}}">Stampa Esame in FMT PDF</a> </td>
               						<td th:if="${role}=='ADMIN'">
-													<span><a class="btn" th:href="@{'/admin/result' + '/' + ${exam.id}}">Inserimento
-															Risultato</a> </span></td>
+													<a class="btn" th:href="@{'/admin/result' + '/' + ${exam.id}}">Inserimento   Risultato</a></td>
+								</tr>					
+							</table>						
               						
-            						</tr>
-            						
-          							</tbody>
-        							</table>
+            						</div>
 								
 								
 
-								</div>
+								
 								<p class="nospace"></p>
 								<div th:unless="${exam}">Non esiste</div>
 								<div></div>
-							</article>
-						</li>
-					</ul>
-				</div>
+							
+				
 			</section>
 			<!-- ############################################################################################# -->
 			<!-- / main body -->

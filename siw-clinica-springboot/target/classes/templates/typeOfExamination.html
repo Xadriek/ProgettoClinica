@@ -23,59 +23,40 @@
 				<ul class="nospace group inspace-15">
 					<li class="one_half first btmspace-50">
 						<article>
-							<h6 class="heading" th:text="#{header.typeOfExaminationSingolo}">Tipologia</h6>
+						<p class="heading underline font-x2"  th:text="#{header.typeOfExaminationSingolo}">Tipologia</p>
+							
 						
 							<div th:if="${typeOfExamination}" th:object="${typeOfExamination}">
 							
 							
-							<table >
+			<section class="group">
+				<div class="one_half last">
+					
+				</div>
+				<table >
+				<tr>
+				<td>
+				<h5 class="heading" >IDENTIFICATIVO:</h5></td>
+				<td><h6 class="heading" th:text="*{id}">CODICE TIPOLOGIA</h6></td>
+				</tr>
+				<tr>
+				<td>
+								<h5 class="heading" >NOME :</h5></td>
+								<td><h6 class="heading" th:text="*{name}">qui-va-data-nome</h6></td>
 								<tr>
-									<td>
-										<h6 class="heading">
-										
-											<span>Nome:</span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span>Descrizione:</span>
-										</h6>
-										
-									</td>
-										<td>
-										<h6 class="heading">
-											<span>Costo:</span>
-										</h6>
-										
-									</td>
-
+								<td><h5 class="heading" >DESCRIZIONE</h5></td>
+								<td><h6 class="heading" th:text="*{description}">qui-va-description</h6></td>
+								</tr>
+								<tr>
+								<td>
+								<h5 class="heading" >COSTO:</h5></td>
+								<td><h6 class="heading" th:text="*{cost}">qui-va-cost</h6></td>
 								</tr>
 								
-								<tr>
-									<td>
-										<h6 class="heading">
-										
-											<span><h6 class="heading" th:text="*{name}">qui-va-data-nome</h6></span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span><h6 class="nospace" th:text="*{description}">qui-va-description</h6></span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span><h6 class="nospace" th:text="*{cost}">qui-va-cost</h6></span>
-										</h6>
-										
-									</td>
-								</tr>
-								
+				</table>				
+			</section>							
+							
 
-							</table>	
 							</div>
 							<p class="nospace"></p>
 							<div th:unless="${typeOfExamination}">Non esiste</div>
