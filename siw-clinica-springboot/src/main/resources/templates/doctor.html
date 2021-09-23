@@ -24,59 +24,33 @@
 					
 					
 										<article>
-							<h6 class="heading" th:text="#{header.doctorSingolo}">Medico</h6>
+										<p class="heading underline font-x2"  th:text="#{header.doctorSingolo}">Medico</p>
+						
 							<div th:if="${doctor}" th:object="${doctor}">
+							
+							
+							
 							<table >
+				<tr>
+				<td>
+				<h5 class="heading" >IDENTIFICATIVO:</h5></td>
+				<td><h6 class="heading" th:text="*{id}">CODICE </h6></td>
+				</tr>
+				<tr>
+				<td>
+								<h5 class="heading" >NOME :</h5></td>
+								<td><h6 class="heading" th:text="*{name}">qui-va-data-name</h6></td>
 								<tr>
-									<td>
-										<h6 class="heading">
-										
-											<span>Nome:</span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span>Cognome:</span>
-										</h6>
-										
-									</td>
-									
-									<td>
-										<h6 class="heading">
-											<span>Specializzazione:</span>
-										</h6>
-										
-									</td>
-
+								<td><h5 class="heading" >COGNOME</h5></td>
+								<td><h6 class="heading" th:text="*{surname}">qui-va-surname</h6></td>
+								</tr>
+								<td><h5 class="heading" >SPECIALIZZAZIONE</h5></td>
+								<td><h6 class="heading" th:text="*{specialization}">qui-va-specialization</h6></td>
 								</tr>
 								
-								<tr>
-									<td>
-										<h6 class="heading">
-										
-											<span><h6 class="heading" th:text="*{name}">qui-va-data-name</h6></span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span><h6 class="nospace" th:text="*{surname}">qui-va-surname</h6></span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span><h6 class="nospace" th:text="*{specialization}">qui-va-specialization</h6></span>
-										</h6>
-										
-									</td>
-
-								</tr>
-								
-								
-								
-							</table>	
+				</table>				
+							
+	
 							</div>
 							<p class="nospace"></p>
 							<div th:unless="${doctor}">Non esiste</div>

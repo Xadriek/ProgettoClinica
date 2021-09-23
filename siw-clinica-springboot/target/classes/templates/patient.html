@@ -24,46 +24,30 @@
 						
 						
 					<article>
-							<h6 class="heading" th:text="#{header.patientSingolo}">Paziente</h6>
+					<p class="heading underline font-x2"  th:text="#{header.patientSingolo}">Paziente</p>
+							
 							<div th:if="${patient}" th:object="${patient}">
+							
+							
 							<table >
+				<tr>
+				<td>
+				<h5 class="heading" >IDENTIFICATIVO:</h5></td>
+				<td><h6 class="heading" th:text="*{id}">CODICE </h6></td>
+				</tr>
+				<tr>
+				<td>
+								<h5 class="heading" >NOME :</h5></td>
+								<td><h6 class="heading" th:text="*{nome}">qui-va-data-name</h6></td>
 								<tr>
-									<td>
-										<h6 class="heading">
-										
-											<span>Nome:</span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span>Cognome:</span>
-										</h6>
-										
-									</td>
-
-								</tr>
-								
-								<tr>
-									<td>
-										<h6 class="heading">
-										
-											<span><h6 class="heading" th:text="*{nome}">qui-va-data-name</h6></span>
-										</h6>
-										
-									</td>
-									<td>
-										<h6 class="heading">
-											<span><h6 class="nospace" th:text="*{cognome}">qui-va-surname</h6></span>
-										</h6>
-										
-									</td>
-
+								<td><h5 class="heading" >COGNOME</h5></td>
+								<td><h6 class="heading" th:text="*{cognome}">qui-va-surname</h6></td>
 								</tr>
 								
 								
-								
-							</table>	
+				</table>				
+							
+				
 							</div>
 							<p class="nospace"></p>
 								<div th:unless="${patient}">Non esiste</div>
