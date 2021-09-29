@@ -15,7 +15,7 @@ public class Result {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private Long value;
+	private String value;
 	@ManyToOne
 	private Exam exam;
 }

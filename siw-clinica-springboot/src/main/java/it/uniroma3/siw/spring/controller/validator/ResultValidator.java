@@ -13,8 +13,7 @@ import it.uniroma3.siw.spring.service.ResultService;
 
 @Component
 public class ResultValidator implements Validator {
-	@Autowired
-	private ResultService resultService;
+
 	
     private static final Logger logger = LoggerFactory.getLogger(ResultValidator.class);
 
@@ -26,10 +25,7 @@ public class ResultValidator implements Validator {
 
 		if (!errors.hasErrors()) {
 			logger.debug("confermato: valori non nulli");
-			if (this.resultService.alreadyExists((Result)o)) {
-				logger.debug("e' un duplicato");
-				errors.reject("duplicato");
-			}
+			
 		}
 	}
 

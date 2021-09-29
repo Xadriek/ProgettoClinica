@@ -110,7 +110,7 @@ public class ExamController {
         	this.examService.insert(exam);
         	
             model.addAttribute("exams", this.examService.allExams());
-            
+            model.addAttribute("role", this.examService.getCredentialsService().getRoleAuthenticated());
             return "exams";
         }
         return "examForm";
