@@ -23,10 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.lowagie.text.DocumentException;
-
-import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.model.Exam;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.ExamService;

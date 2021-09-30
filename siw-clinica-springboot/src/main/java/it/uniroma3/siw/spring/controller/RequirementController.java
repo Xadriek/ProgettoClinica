@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import it.uniroma3.siw.spring.controller.validator.RequirementValidator;
 import it.uniroma3.siw.spring.model.Requirement;
 import it.uniroma3.siw.spring.model.TypeOfExamination;
 import it.uniroma3.siw.spring.service.RequirementService;
@@ -20,8 +18,7 @@ public class RequirementController {
 	@Autowired
 	private RequirementService requirementService;
 	
-   @Autowired
-    private RequirementValidator requirementValidator;
+
         
     @RequestMapping(value="/admin/requirement", method = RequestMethod.GET)
     public String addRequirement(Model model) {
